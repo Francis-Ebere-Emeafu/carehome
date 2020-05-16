@@ -1,0 +1,81 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+
+{% block title %}Login{% endblock title %}
+
+{% block body %}
+
+<div class="login-page">
+    <div class="login-main">
+    	 <div class="login-head">
+				<h1>Login</h1>
+			</div>
+			<div class="login-block">
+				<form method="post">{% csrf_token %}
+          {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+              {{ error }}
+            {% endfor %}
+          {% endif %}
+
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+              {% if form.username.errors %}
+                  <div class="alert alert-danger">
+                      {{ form.username.errors }}
+                  </div>
+              {% endif %}
+              {{ form.username }}
+            </div>
+
+            <div class="col-lg-12 col-md-12 col-sm-12">
+              {% if form.password.errors %}
+                  <div class="alert alert-danger">
+                      {{ form.password.errors }}
+                  </div>
+              {% endif %}
+              {{ form.password }}
+            </div>
+          </div>
+
+					<!-- <input type="text" name="email" placeholder="Email" required="">
+					<input type="password" name="password" class="lock" placeholder="Password"> -->
+
+					<div class="forgot-top-grids">
+						<div class="forgot-grid">
+							<ul>
+								<li>
+									<input type="checkbox" id="brand1" value="">
+									<label for="brand1"><span></span>Remember me</label>
+								</li>
+							</ul>
+						</div>
+						<div class="forgot">
+							<a href="#">Forgot password?</a>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+
+					<input type="submit" name="Sign In" value="Login">
+
+				</form>
+				<!-- <h5><a href="index.html">Go Back to Home</a></h5> -->
+			</div>
+      </div>
+</div>
+
+{% endblock body %}
+
+
+{% block extra-js %}
+<script>
+
+    $('#id_username').attr('placeholder', 'Email or Phone');
+    $('#id_username').addClass('form-control1');
+
+    $('#id_password').attr('placeholder', 'Password');
+    $('#id_password').addClass('form-control1');
+
+    $('#id_button').addClass('form-control1');
+  </script>
+{% endblock extra-js %}

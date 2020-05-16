@@ -1,0 +1,54 @@
+<div class="main-page-charts">
+   <div class="main-page-chart-layer1">
+		<div class="col-md-6 chart-layer1-left">
+			<div class="glocy-chart">
+			<div class="span-2c">
+                        <h3 class="tlt">Sales Analytics</h3>
+                        <canvas id="bar" height="300" width="400" style="width: 400px; height: 300px;"></canvas>
+                        <script>
+                            var barChartData = {
+                            labels : ["Jan","Feb","Mar","Apr","May","Jun","jul"],
+                            datasets : [
+                                {
+                                    fillColor : "#FC8213",
+                                    data : [65,59,90,81,56,55,40]
+                                },
+                                {
+                                    fillColor : "#337AB7",
+                                    data : [28,48,40,19,96,27,100]
+                                }
+                            ]
+
+                        };
+                            new Chart(document.getElementById("bar").getContext("2d")).Bar(barChartData);
+
+                        </script>
+                    </div>
+			</div>
+		</div>
+		<div class="col-md-6 chart-layer1-right">
+			<div class="user-marorm">
+			<div class="malorum-top">
+			</div>
+			<div class="malorm-bottom">
+				<span class="malorum-pro"> </span>
+			     <h4>unde omnis iste</h4>
+				 <h2>Melorum</h2>
+				<p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising.</p>
+				<ul class="malorum-icons">
+					<li><a href="#"><i class="fa fa-facebook"> </i>
+						<div class="tooltip"><span>Facebook</span></div>
+					</a></li>
+					<li><a href="#"><i class="fa fa-twitter"> </i>
+						<div class="tooltip"><span>Twitter</span></div>
+					</a></li>
+					<li><a href="#"><i class="fa fa-google-plus"> </i>
+						<div class="tooltip"><span>Google</span></div>
+					</a></li>
+				</ul>
+			</div>
+		   </div>
+		</div>
+	 <div class="clearfix"> </div>
+  </div>
+ </div>
