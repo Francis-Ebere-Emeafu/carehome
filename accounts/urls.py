@@ -11,4 +11,6 @@ urlpatterns = [
     path("s-staff/", views.senior_staff_profile, name="senior_staff_profile"),
     path("manager/", views.manager_profile, name="manager_profile"),
     path("profile/", views.profile, name="profile"),
+    path("logout", views.logout_user, name="logout"),
+
 ]

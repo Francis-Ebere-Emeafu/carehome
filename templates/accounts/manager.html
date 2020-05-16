@@ -1,0 +1,13 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+
+{% block title %}Manager{% endblock title %}
+
+{% block dropdown_profile %}
+<!-- <li> <a href="#"><i class="fa fa-cog"></i> Settings</a> </li> -->
+<li> <a href="{% url 'senior_staff_profile' %}"><i class="fa fa-user"></i> Profile</a> </li>
+{% endblock dropdown_profile %}
+
+
+{% block content %}
+{% endblock content %}

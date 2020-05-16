@@ -57,20 +57,24 @@ def logout_user(request):
 
 
 def staff_profile(request):
-    context = {"profile": "Ebere"}
+    account = Account.objects.get(user=request.user)
+    context = {"account": account}
     return render(request, 'accounts/staff.html', context)
 
 
 def senior_staff_profile(request):
-    context = {"profile": "Ebere"}
+    account = Account.objects.get(user=request.user)
+    context = {"account": account}
     return render(request, 'accounts/senior_staff.html', context)
 
 
 def manager_profile(request):
-    context = {"profile": "Ebere"}
+    account = Account.objects.get(user=request.user)
+    context = {"account": account}
     return render(request, 'accounts/manager.html', context)
 
 
 def profile(request):
-    context = {"profile": "Ebere"}
+    account = Account.objects.get(user=request.user)
+    context = {"account": account}
     return render(request, 'accounts/profile.html', context)
