@@ -5,9 +5,9 @@ from datetime import datetime
 
 
 class Account(models.Model):
-    STAFF = 1
-    SENIOR_STAFF = 2
-    MANAGER = 3
+    STAFF = 0
+    SENIOR_STAFF = 1
+    MANAGER = 2
     USER_TYPE = enumerate(('Staff', 'Senior Staff', 'Manager'))
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)

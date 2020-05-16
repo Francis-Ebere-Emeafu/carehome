@@ -1,4 +1,6 @@
 from accounts.models import Account
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
 
 
 def get_username_for_auth(input_username):
@@ -14,3 +16,47 @@ def get_username_for_auth(input_username):
             account = Account.objects.get(email=input_username)
             username = account.user.username
     return username
+
+
+@login_required
+def home(request):
+    if is_staff(request.user):
+        print("The user is a STAFF")
+        return redirect('staff_profile')
+    elif is_senior_staff(request.user):
+        print("The user is a SENIOR STAFF")
+        return redirect('senior_staff_profile')
+    elif is_manager(request.user):
+        print("The user is a MANAGER")
+        return redirect('manager_profile')
+    elif request.user.has_perm('user.is_superuser'):
+        print("The user is a SUPERUSER STAFF")
+        # logout(request)
+        return redirect('profile')
+
+
+def is_staff(user):
+    if Account.objects.filter(user=user):
+        account = Account.objects.get(user=user)
+        # confirm that the user is a staff
+        if account.user_type == 0:
+            return True
+        return False
+
+
+def is_senior_staff(user):
+    if Account.objects.filter(user=user):
+        account = Account.objects.get(user=user)
+        # confirm that the user is a staff
+        if account.user_type == 1:
+            return True
+        return False
+
+
+def is_manager(user):
+    if Account.objects.filter(user=user):
+        account = Account.objects.get(user=user)
+        # confirm that the user is a staff
+        if account.user_type == 2:
+            return True
+        return False

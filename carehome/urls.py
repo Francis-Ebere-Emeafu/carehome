@@ -25,7 +25,7 @@ from accounts.views import login_user
 
 urlpatterns = [
     path('', login_user, name="login"),
-    path('', TemplateView.as_view(template_name='home.html'), name='home'),
+    path('lols', TemplateView.as_view(template_name='home.html'), name='home_template'),
     path('admin/', admin.site.urls),
     path('accounts/', include("accounts.urls")),
 ]

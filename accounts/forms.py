@@ -58,7 +58,6 @@ class LoginForm(forms.Form):
             password = self.cleaned_data['password']
             phone_email = get_username_for_auth(username)
             user = authenticate(username=phone_email, password=password)
-            print(user)
 
             if user is not None:
                 return self.cleaned_data
