@@ -1,0 +1,188 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+
+{% block title %}Add New Staff {% endblock title %}
+
+
+	 {% block panel %}
+   <!-- Remove panel -->
+   {% endblock panel %}
+
+{% block side_menu %}
+{% include 'base/side_menu/manager_side_menu.html' %}
+{% endblock side_menu %}
+
+{% block content %}
+<div class="market-updates">
+    <div class="inbox" >
+    	  <h2  style="text-align:center;">
+					Create Staff Task
+				</h2>
+
+			<div class="col-md-6 col-sm-offset-3 compose-right">
+				<div class="inbox-details-default">
+					<div class="inbox-details-heading" style="text-align:center;">
+						Please fill details in the form below to Create Staff Task
+					</div>
+					<div class="inbox-details-body">
+
+						<form class="" action="" method="post" id="myRegForm">{% csrf_token %}
+							{{ form }}
+							<input type="submit" name="" onclick="" value="Submit">
+
+						</form>
+					</div>
+				</div>
+			</div>
+
+          <div class="clearfix"> </div>
+   </div>
+</div>
+
+
+{% endblock content %}
+
+
+
+
+{% block extra-js %}
+<script>
+	$('#id_email').attr('placeholder', 'Email');
+	$('#id_email').addClass('form-control');
+
+	$('#id_user_type').attr('placeholder', 'Select Staff Type');
+	$('#id_user_type').addClass('form-control');
+
+	$('#id_first_name').attr('placeholder', 'First Name');
+	$('#id_first_name').addClass('form-control');
+
+	$('#id_last_name').attr('placeholder', 'Last Name');
+	$('#id_last_name').addClass('form-control');
+
+	$('#id_phone').attr('placeholder', 'Phone Number');
+	$('#id_phone').addClass('form-control');
+
+	$('#id_confirm').attr('placeholder', 'Confirm Password');
+	$('#id_confirm').addClass('form-control');
+
+	$('#id_password').attr('placeholder', 'Password');
+	$('#id_password').addClass('form-control');
+
+	$('#id_button').addClass('form-control');
+
+	function submit() {
+  /*Put all the data posting code here*/
+ document.getElementById("myRegForm").reset();
+}
+</script>
+{% endblock extra-js %}
+
+
+
+<div class="market-updates">
+    <div class="inbox" style="text-align:center;">
+    	  <h2>Create New Task</h2>
+
+
+
+    	 	<div class="col-md-6 col-sm-offset-3 compose-right">
+					<div class="inbox-details-default">
+						<div class="inbox-details-heading">
+							Assign task to Staff
+						</div>
+						<div class="inbox-details-body">
+							<!-- <div class="alert alert-info">
+
+							</div> -->
+							<form class="" method="post">{% csrf_token %}
+
+			          {% if form.non_field_errors %}
+			            {% for error in form.non_field_errors %}
+			              {{ error }}
+			            {% endfor %}
+			          {% endif %}
+
+{{ form }}
+
+{% comment %}
+								<div class="row">
+			            <div class="col-lg-12 col-md-12 col-sm-12">
+			              {% if form.first_name.errors %}
+			                  <div class="alert alert-danger">
+			                      {{ form.first_name.errors }}
+			                  </div>
+			              {% endif %}
+			              {{ form.first_name }}
+			            </div>
+
+			            <div class="col-lg-12 col-md-12 col-sm-12">
+			              {% if form.last_name.errors %}
+			                  <div class="alert alert-danger">
+			                      {{ form.last_name.errors }}
+			                  </div>
+			              {% endif %}
+			              {{ form.last_name }}
+			            </div>
+			          </div>
+
+								<div class="col-lg-12 col-md-12 col-sm-12">
+									{% if form.user_type.errors %}
+											<div class="alert alert-danger">
+													{{ form.user_type.errors }}
+											</div>
+									{% endif %}
+									{{ form.user_type }}
+								</div>
+
+								<div class="row">
+			            <div class="col-lg-12 col-md-12 col-sm-12">
+			              {% if form.phone.errors %}
+			                  <div class="alert alert-danger">
+			                      {{ form.phone.errors }}
+			                  </div>
+			              {% endif %}
+			              {{ form.phone }}
+			            </div>
+
+			            <div class="col-lg-12 col-md-12 col-sm-12">
+			              {% if form.email.errors %}
+			                  <div class="alert alert-danger">
+			                      {{ form.email.errors }}
+			                  </div>
+			              {% endif %}
+			              {{ form.email }}
+			            </div>
+			          </div>
+
+								<div class="row">
+			            <div class="col-lg-12 col-md-12 col-sm-12">
+			              {% if form.password.errors %}
+			                  <div class="alert alert-danger">
+			                      {{ form.password.errors }}
+			                  </div>
+			              {% endif %}
+			              {{ form.password }}
+			            </div>
+
+			            <div class="col-lg-12 col-md-12 col-sm-12">
+			              {% if form.confirm.errors %}
+			                  <div class="alert alert-danger">
+			                      {{ form.confirm.errors }}
+			                  </div>
+			              {% endif %}
+			              {{ form.confirm }}
+			            </div>
+			          </div>
+
+{% endcomment %}
+
+
+								<input type="submit" value="Register New Staff">
+							</form>
+						</div>
+					</div>
+				</div>
+
+          <div class="clearfix"> </div>
+   </div>
+</div>

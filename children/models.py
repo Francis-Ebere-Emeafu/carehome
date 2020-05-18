@@ -4,27 +4,33 @@ from django.utils import timezone
 from datetime import datetime
 
 
-class Account(models.Model):
-    STAFF = 0
-    SENIOR_STAFF = 1
-    MANAGER = 2
-    USER_TYPE = enumerate(('Staff', 'Senior Staff', 'Manager'))
+class Child(models.Model):
+    MALE = 0
+    FEMALE = 1
+    SELECT = 2
+    GENDER = enumerate(('Male', 'Female', 'Select'))
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    user_type = models.PositiveIntegerField(choices=USER_TYPE, default=STAFF)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
+    gender = models.PositiveIntegerField(choices=GENDER, default=SELECT)
     phone = models.CharField(max_length=20)
     email = models.EmailField()
-    active = models.BooleanField(default=True)
+    assigned = models.BooleanField(default=False)
     when = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.user.username
 
-    def get_absolute_url(self):
-        return reverse("", kwargs={"id": self.id})
-
     @property
     def full_name(self):
         return "{} {}".format(self.first_name, self.last_name)
+
+
+class ChildRecord(models.Model):
+    child = models.ForeignKey(Child, on_delete=models.CASCADE)
+    feeding = models.TextField()
+    medication = models.TextField()
+    behaviour = models.TextField()
+    notes = models.TextField()
+    visit = models.TextField()

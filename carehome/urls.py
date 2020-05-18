@@ -28,6 +28,8 @@ urlpatterns = [
     path('lols', TemplateView.as_view(template_name='home.html'), name='home_template'),
     path('admin/', admin.site.urls),
     path('accounts/', include("accounts.urls")),
+    path('task/', include("workbook.urls")),
+    # path('', include("Home.urls")),
 ]
 
 

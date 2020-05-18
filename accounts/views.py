@@ -5,11 +5,16 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from accounts.models import Account
 
-from accounts.forms import RegForm, LoginForm
-from accounts.utils import get_username_for_auth
+from accounts.forms import RegForm, LoginForm, ModifyForm
+from accounts.utils import get_username_for_auth, is_manager
 
 
-def register(request):
+def register_staff(request):
+    if not is_manager(user=request.user):
+        print("You are permitted")
+        logout(request)
+        return redirect('login')
+
     if request.method == 'POST':
         form = RegForm(request.POST)
         if form.is_valid():
@@ -23,9 +28,33 @@ def register(request):
             account.user = new_user
             account.email = username
             account.save()
+            messages.success(request, "New Staff successfully registered")
+            return redirect('register_staff')
     else:
         form = RegForm()
-    return render(request, "accounts/register.html", {"form": form})
+    return render(request, "accounts/register_staff.html", {"form": form})
+
+
+def staff_management_list(request):
+    me = request.user
+    accounts = Account.objects.all().exclude(user=me)
+    context = {"staff_list": accounts}
+    return render(request, "accounts/staff_management_list.html", context)
+
+
+def modify_staff(request, profile_id=None):
+    if not is_manager(user=request.user):
+        print("You are permitted")
+        logout(request)
+        return redirect('login')
+    staff = get_object_or_404(Account, id=profile_id)
+    form = ModifyForm(request.POST or None, request.FILES or None, instance = staff)
+    if form.is_valid():
+        staff_update = form.save()
+        messages.success(request, "Successfully Edited")
+        return redirect('staff_management_list')
+    context = {"staff": staff, "form": form}
+    return render(request, "accounts/modify_staff.html", context)
 
 
 def login_user(request):
@@ -43,7 +72,6 @@ def login_user(request):
             else:
                 messages.warning(request, "You have entered an invalid username or password")
                 return redirect('login')
-
     else:
         form = LoginForm()
     return render(request, 'accounts/login.html', {"form": form})
@@ -54,6 +82,30 @@ def logout_user(request):
     return redirect('login')
 
 
+def confirm_delete_staff(request, profile_id):
+    if not is_manager(user=request.user):
+        print("You are permitted")
+        logout(request)
+        return redirect('login')
+    account = get_object_or_404(Account, id=profile_id)
+    username = account.user.username
+    user_instance = User.objects.get(username=username)
+    # if user_instance is not None:
+    #     print(user_instance)
+    #     user_instance.delete()
+    #     return redirect("staff_management_list")
+    account.delete()
+    messages.success(request, "{} Account was successfully deleted".format(account))
+    return redirect('staff_management_list')
+
+
+def delete_staff(request, profile_id):
+    if not is_manager(user=request.user):
+        print("You are permitted")
+        logout(request)
+        return redirect('login')
+    staff = get_object_or_404(Account, id=profile_id)
+    return render(request, 'accounts/delete_staff.html', {"staff": staff})
 
 
 def staff_profile(request):
@@ -74,7 +126,13 @@ def manager_profile(request):
     return render(request, 'accounts/manager.html', context)
 
 
-def profile(request):
-    account = Account.objects.get(user=request.user)
-    context = {"account": account}
-    return render(request, 'accounts/profile.html', context)
+def create_super_user_profile(request):
+    # This function creates temporary user Account profile
+    account = Account.objects.create(
+        user=request.user,
+        user_type = Account.MANAGER,
+        first_name = 'SuperAccount',
+        last_name = 'SuperAccount',
+        phone = 'phone_email',
+        email = request.user.email)
+    return redirect('home')

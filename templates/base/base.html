@@ -108,7 +108,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   {% block body %}
 
 
-{% include 'base/header.html' %}
+  {% block header %}
+  {% include 'base/header.html' %}
+  {% endblock header %}
+
+
 <!--heder end here-->
 <!-- script-for sticky-nav -->
 		<script>
@@ -129,7 +133,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!--inner block start here-->
 <div class="inner-block" style="min-height:800px">
 <!--market updates updates-->
-	 {% block panel %} {% include 'base/panels.html' %} {% endblock panel %}
+
+	 {% block panel %}
+   {% include 'base/panels.html' %}
+   {% endblock panel %}
+   
 <!--market updates end here-->
 <!--mainpage chit-chating-->
 <div class="chit-chat-layer1">
@@ -157,7 +165,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </div>
 </div>
 <!--slider menu-->
-{% include 'base/slide_menu.html' %}
+{% block side_menu %}
+{% endblock side_menu %}
 	<div class="clearfix"> </div>
 </div>
 

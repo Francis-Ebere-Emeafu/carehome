@@ -3,10 +3,10 @@
 
 {% block title %}Staff{% endblock title %}
 
-{% block dropdown_profile %}
-<!-- <li> <a href="#"><i class="fa fa-cog"></i> Settings</a> </li> -->
-<li> <a href="{% url 'staff_profile' %}"><i class="fa fa-user"></i> Profile</a> </li>
-{% endblock dropdown_profile %}
+
+{% block side_menu %}
+{% include 'base/side_menu/staff_side_menu.html' %}
+{% endblock side_menu %}
 
 {% block content %}
 {% endblock content %}

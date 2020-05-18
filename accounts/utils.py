@@ -39,7 +39,8 @@ def is_staff(user):
     if Account.objects.filter(user=user):
         account = Account.objects.get(user=user)
         # confirm that the user is a staff
-        if account.user_type == 0:
+        # if account.user_type == 0:
+        if account.user_type == Account.STAFF:
             return True
         return False
 
@@ -48,7 +49,7 @@ def is_senior_staff(user):
     if Account.objects.filter(user=user):
         account = Account.objects.get(user=user)
         # confirm that the user is a staff
-        if account.user_type == 1:
+        if account.user_type == Account.SENIOR_STAFF:
             return True
         return False
 
@@ -57,6 +58,6 @@ def is_manager(user):
     if Account.objects.filter(user=user):
         account = Account.objects.get(user=user)
         # confirm that the user is a staff
-        if account.user_type == 2:
+        if account.user_type == Account.MANAGER:
             return True
         return False

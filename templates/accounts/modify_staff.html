@@ -1,0 +1,78 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+
+{% block title %}Manager{% endblock title %}
+
+{% block side_menu %}
+{% include 'base/side_menu/manager_side_menu.html' %}
+{% endblock side_menu %}
+
+ {% block panel %}
+ <!-- Remove panel -->
+ {% endblock panel %}
+
+{% block content %}
+<div class="market-updates">
+    <div class="inbox" >
+    	  <h2  style="text-align:center;">
+					Modify Staff Details
+				</h2>
+
+			<div class="col-md-6 col-sm-offset-3 compose-right">
+				<div class="inbox-details-default">
+					<div class="inbox-details-heading" style="text-align:center;">
+						Edit Staff Status
+					</div>
+
+					<div class="inbox-details-body">
+						<!-- <div class="alert alert-info" style="text-align:center;">
+							Make changes to the details in the form below!
+						</div> -->
+
+						<form class="" action="" method="post" id="myRegForm">{% csrf_token %}
+
+              <label for="active"><span></span>Staff Position</label>
+							{{ form.user_type }}
+
+              <div class="row" style="padding-top:20px; padding-bottom:-1px;">
+                <div class="col-lg-10 col-md-10 col-sm-10">
+                  <label for="active"><span></span>Activate | Deactivate</label>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2">
+                  {{ form.active }}
+                </div>
+              </div>
+
+              <!-- <li>
+                <input type="checkbox" id="brand1" value="">
+
+              </li> -->
+
+							<input type="submit" id="input_submit" name="" onclick="" value="Submit">
+
+						</form>
+					</div>
+				</div>
+			</div>
+
+          <div class="clearfix"> </div>
+   </div>
+</div>
+
+{% endblock content %}
+
+
+
+{% block extra-js %}
+<script>
+	$('#id_user_type').attr('placeholder', 'Select Staff Type');
+	$('#id_user_type').addClass('form-control');
+
+	$('#id_active').attr('placeholder', 'Active');
+	$('#id_active').addClass('form-control ');
+
+  $('#id_input_submit').attr('placeholder', 'Active');
+  $('#id_input_submit').addClass('form-control');
+
+</script>
+{% endblock extra-js %}
