@@ -14,15 +14,19 @@
         </li>
         <li id="menu-comunicacao" ><a href="#"><i class="fa fa-edit nav_icon"></i><span>Tasks </span><span class="fa fa-angle-right" style="float: right"></span></a>
           <ul id="menu-comunicacao-sub" >
-            <li id="menu-mensagens" style="width: 120px" ><a href="{% url 'create_task' %}">Create Task</a></li>
-            <li id="menu-arquivos" ><a href="">Assign Tasks</a></li>
-            <li id="menu-arquivos" ><a href="">All Tasks</a></li>
+            <li id="menu-mensagens" style="" ><a href="{% url 'create_task' %}">Create Task</a></li>
+            <!-- <li id="menu-arquivos" ><a href="">Assign Tasks</a></li> -->
+            {% comment %}<li id="menu-arquivos" ><a href="{% url 'assign_task_list' %}">Assign Tasks</a></li> {% endcomment %}
+            <li id="menu-arquivos" ><a href="{% url 'manage_all_task' %}">Manage All Tasks</a></li>
+            <li id="menu-arquivos" ><a href="{% url 'completed_task' %}">Completed Tasks</a></li>
+            <li id="menu-arquivos" ><a href="{% url 'incompleted_task' %}">In-completed Tasks</a></li>
           </ul>
+
         </li>
         <li><a href="#"><i class="fa fa fa-users nav_icon"></i><span>Children</span><span class="fa fa-angle-right" style="float: right"></span></a>
           <ul>
-            <li><a href="{% url 'register_staff' %}">Add Child</a></li>
-            <li><a href="{% url 'manager_profile' %}">Children List</a></li>
+            <li><a href="{% url 'register_child' %}">Add Child</a></li>
+            <li><a href="{% url 'children_list' %}">Children List</a></li>
           </ul>
         </li>
         <li><a href=""><i class="fa fa-book"></i><span>Records</span></a></li>
@@ -30,10 +34,6 @@
       </ul>
     </div>
 </div>
-
-
-
-
 
 
 {% comment %}

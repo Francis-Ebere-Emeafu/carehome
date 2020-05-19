@@ -1,0 +1,73 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+
+{% block title %}Assign Tasks List {% endblock title %}
+
+
+	 {% block panel %}
+   <!-- Remove panel -->
+   {% endblock panel %}
+
+{% block side_menu %}
+{% include 'base/side_menu/manager_side_menu.html' %}
+{% endblock side_menu %}
+
+{% block content %}
+
+  <div class="market-updates">
+    <div class="inbox">
+      <h2  style="text-align:center;">Assign Tasks To Staff</h2>
+
+      <div class="col-md-10 col-sm-offset-1 mailbox-content  tab-content tab-content-in">
+        <div class="tab-pane active text-style" id="tab1">
+          <div class="mailbox-border">
+            <table class="table tab-border">
+              <tbody>
+                <tr class="unread checked">
+                <th class="hidden-xs">
+                Task Title
+                </th>
+                <th>
+                  Assigned Staff
+                </th>
+
+                <th style="color:blue">
+                  Assign Tasks
+                </th>
+
+                </tr>
+                {% for task in tasks %}
+                <tr class="read checked">
+                <td class="hidden-xs">
+                {{ task.title }}
+                </td>
+                <td>
+                  <select id="id_staff" name="staff">
+                  {% for x, y in form.fields.staff.choices %}
+                      <option value="{{ x }}"{% if form.fields.staff.value == x %} selected{% endif %}>{{ y }}</option>
+                  {% endfor %}
+                  </select>
+                {% comment %}
+                {% for option in form %}{{ option }}{% endfor %}
+                {% endcomment %}
+                </td>
+                <td>
+                  <div class="">
+                    <a href="{% url 'assign_task' task_id=task.id staff_id=task.id %}" style="color:blue">Edit <i class="fa fa-pencil"></i></a>
+                  </div>
+                </td>
+                <td>
+                  <div class="" style="text-align:center">
+                    <a href="{% url 'edit_task' task_id=task.id %}" style="color:red"><i class="fa fa fa-trash-o"></i></a>
+                  </div>
+                </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

@@ -1,7 +1,7 @@
 {% extends "base/base.html" %}
 {% load staticfiles %}
 
-{% block title %}Add New Staff {% endblock title %}
+{% block title %}Modify Child's Details {% endblock title %}
 
 
 	 {% block panel %}
@@ -16,19 +16,20 @@
 <div class="market-updates">
     <div class="inbox" >
     	  <h2  style="text-align:center;">
-					Create Staff Task
+					Modify Child's Details
 				</h2>
 
 			<div class="col-md-6 col-sm-offset-3 compose-right">
 				<div class="inbox-details-default">
 					<div class="inbox-details-heading" style="text-align:center;">
-						Please fill details in the form below to Create Staff Task
+						Edit the form below to modify Child's details
 					</div>
+
 					<div class="inbox-details-body">
 
-						<form class="" action="" method="post" id="myRegForm">{% csrf_token %}
+						<form class="" action="" method="post" id="">{% csrf_token %}
 							{{ form }}
-							<input type="submit" name="" onclick="" value="Submit">
+							<input type="submit" name="" onclick="" value="Modify">
 
 						</form>
 					</div>
@@ -47,11 +48,11 @@
 
 {% block extra-js %}
 <script>
-	$('#id_staff').attr('placeholder', 'Email');
-	$('#id_staff').addClass('form-control');
+	$('#id_email').attr('placeholder', 'Email');
+	$('#id_email').addClass('form-control');
 
-	$('#id_user_type').attr('placeholder', 'Select Staff Type');
-	$('#id_user_type').addClass('form-control');
+	$('#id_gender').attr('placeholder', 'Select Gender');
+	$('#id_gender').addClass('form-control');
 
 	$('#id_first_name').attr('placeholder', 'First Name');
 	$('#id_first_name').addClass('form-control');
@@ -70,10 +71,6 @@
 
 	$('#id_button').addClass('form-control');
 
-	function submit() {
-  /*Put all the data posting code here*/
- document.getElementById("myRegForm").reset();
-}
 </script>
 {% endblock extra-js %}
 
@@ -81,19 +78,19 @@
 
 <div class="market-updates">
     <div class="inbox" style="text-align:center;">
-    	  <h2>Create New Task</h2>
+    	  <h2>Add New Staff</h2>
 
 
 
     	 	<div class="col-md-6 col-sm-offset-3 compose-right">
 					<div class="inbox-details-default">
 						<div class="inbox-details-heading">
-							Assign task to Staff
+							Register Staff Details
 						</div>
 						<div class="inbox-details-body">
-							<!-- <div class="alert alert-info">
-
-							</div> -->
+							<div class="alert alert-info">
+								Please fill details in the form below!
+							</div>
 							<form class="" method="post">{% csrf_token %}
 
 			          {% if form.non_field_errors %}
@@ -102,9 +99,6 @@
 			            {% endfor %}
 			          {% endif %}
 
-{{ form }}
-
-{% comment %}
 								<div class="row">
 			            <div class="col-lg-12 col-md-12 col-sm-12">
 			              {% if form.first_name.errors %}
@@ -173,8 +167,6 @@
 			              {{ form.confirm }}
 			            </div>
 			          </div>
-
-{% endcomment %}
 
 
 								<input type="submit" value="Register New Staff">

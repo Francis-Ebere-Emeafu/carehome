@@ -131,8 +131,8 @@ def create_super_user_profile(request):
     account = Account.objects.create(
         user=request.user,
         user_type = Account.MANAGER,
-        first_name = 'SuperAccount',
-        last_name = 'SuperAccount',
+        first_name = 'Super',
+        last_name = 'Account',
         phone = 'phone_email',
         email = request.user.email)
     return redirect('home')

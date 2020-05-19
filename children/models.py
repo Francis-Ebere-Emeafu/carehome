@@ -10,7 +10,7 @@ class Child(models.Model):
     SELECT = 2
     GENDER = enumerate(('Male', 'Female', 'Select'))
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    # user = models.ForeignKey(User, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     gender = models.PositiveIntegerField(choices=GENDER, default=SELECT)
@@ -20,8 +20,8 @@ class Child(models.Model):
     when = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.user.username
-
+        return self.first_name
+        
     @property
     def full_name(self):
         return "{} {}".format(self.first_name, self.last_name)

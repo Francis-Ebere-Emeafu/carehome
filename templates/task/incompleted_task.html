@@ -1,0 +1,58 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+
+{% block title %}In-Completed Tasks {% endblock title %}
+
+
+	 {% block panel %}
+   <!-- Remove panel -->
+   {% endblock panel %}
+
+{% block side_menu %}
+{% include 'base/side_menu/manager_side_menu.html' %}
+{% endblock side_menu %}
+
+{% block content %}
+
+  <div class="market-updates">
+    <div class="inbox">
+      <h2  style="text-align:center; color:red;">In-Completed Staff Tasks</h2>
+
+      <div class="col-md-10 col-sm-offset-1 mailbox-content  tab-content tab-content-in">
+        <div class="tab-pane active text-style" id="tab1">
+          <div class="mailbox-border">
+            <table class="table tab-border">
+              <tbody>
+                <tr class="unread checked">
+                <th class="hidden-xs">
+                Task Title
+                </th>
+                <th>
+                  Assigned Staff
+                </th>
+                <th>
+                  Date Created
+                </th>
+
+                </tr>
+                {% for task in tasks %}
+                <tr class="read checked">
+                <td class="hidden-xs">
+                {{ task.title }}
+                </td>
+                <td>
+                    {{ task.staff }}
+                </td>
+                <td>
+                {{ task.when }}
+                </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

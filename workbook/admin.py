@@ -12,4 +12,4 @@ class TaskAdmin(admin.ModelAdmin):
 
 @admin.register(StaffTask)
 class StaffTaskAmin(admin.ModelAdmin):
-    list_display = ['staff']
+    list_display = ['title', 'staff', 'completed', 'when']

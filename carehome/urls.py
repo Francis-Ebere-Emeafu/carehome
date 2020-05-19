@@ -29,6 +29,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include("accounts.urls")),
     path('task/', include("workbook.urls")),
+    path('child/', include("children.urls")),
     # path('', include("Home.urls")),
 ]
 
