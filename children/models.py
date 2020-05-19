@@ -3,6 +3,8 @@ from django.db import models
 from django.utils import timezone
 from datetime import datetime
 
+from accounts.models import Account
+
 
 class Child(models.Model):
     MALE = 0
@@ -20,8 +22,8 @@ class Child(models.Model):
     when = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.first_name
-        
+        return "{} {}".format(self.first_name, self.last_name)
+
     @property
     def full_name(self):
         return "{} {}".format(self.first_name, self.last_name)
@@ -34,3 +36,12 @@ class ChildRecord(models.Model):
     behaviour = models.TextField()
     notes = models.TextField()
     visit = models.TextField()
+    record_active = models.BooleanField(default=True)
+
+
+class StaffChildManager(models.Model):
+    child = models.ForeignKey(Child, null=True, blank=True, on_delete=models.CASCADE)
+    staff = models.ForeignKey(Account, null=True, blank=True, on_delete=models.SET_NULL)
+
+    def __str__(self):
+        return "{} {}".format(self.child.first_name, self.staff.first_name)

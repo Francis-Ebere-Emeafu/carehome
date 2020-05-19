@@ -1,8 +1,10 @@
-from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import redirect, render, get_object_or_404
 
+from accounts.models import Account
 from accounts.utils import is_manager
-from children.models import Child
+from children.models import Child, ChildRecord, StaffChildManager
 from children.forms import ChildRegisterForm, ChildModifyForm
 
 
@@ -51,3 +53,28 @@ def modify_child_details(request, child_id=None):
         return redirect('children_list')
     context = {"child": child, "form": form}
     return render(request, "children/modify_child_details.html", context)
+
+
+def enter_child_record(request):
+    if request.method == "POST":
+        form = ChildRecordForm(request.POST)
+        if form.is_valid():
+            pass
+    return render(request, "children/enter_child_record.html")
+
+
+def child_assignment_list(request):
+    me = Account.objects.get(user=request.user)
+    assigned_list = StaffChildManager.objects.filter(staff=me)
+    children_list = Child.objects.filter(assigned=False)
+    context = {"children_list": children_list, "assigned_list": assigned_list}
+    return render(request, "children/child_assignment_list.html", context)
+
+
+def select_child(request, child_id):
+    child = get_object_or_404(Child, id=child_id)
+    me = Account.objects.get(user=request.user)
+    StaffChildManager.objects.create(child=child, staff=me)
+    child.assigned = True
+    child.save()
+    return redirect('child_assignment_list')

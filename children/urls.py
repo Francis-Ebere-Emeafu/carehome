@@ -7,9 +7,9 @@ urlpatterns = [
     path("list/", views.children_list, name="children_list"),
     path("modify/<int:child_id>/", views.modify_child_details, name="modify_child_details"),
 
-    # path("s-staff/", views.senior_staff_profile, name="senior_staff_profile"),
-    # path("manager/", views.manager_profile, name="manager_profile"),
-    #
+    path("assignment/list/", views.child_assignment_list, name="child_assignment_list"),
+    path("select/<int:child_id>/", views.select_child, name="select_child"),
+
     # path("staff/list/", views.staff_management_list, name="staff_management_list"),
     # path("delete/<int:profile_id>/", views.delete_staff, name="delete_staff"),
     # path("delete-staff/<int:profile_id>/", views.confirm_delete_staff, name="confirm_delete_staff"),

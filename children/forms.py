@@ -3,7 +3,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.models import User
 
 
-from children.models import Child, ChildRecord
+from children.models import Child, ChildRecord, StaffChildManager
 from accounts.models import Account
 from workbook.models import StaffTask
 
@@ -63,3 +63,17 @@ class ChildModifyForm(forms.ModelForm):
     class Meta:
         model = Child
         fields = ['first_name', 'last_name', 'phone', 'email', 'gender']
+
+
+class ChildRecordForm(forms.ModelForm):
+    class Meta:
+        model = ChildRecord
+        fields = ['child', 'feeding', 'medication', 'behaviour', 'notes', 'visit']
+
+
+class StaffChildManagerForm(forms.ModelForm):
+    children = Child.objects.filter(assigned=False)
+    child = forms.ModelChoiceField(queryset=children, required=False, empty_label='Select Child')
+    class Meta:
+        model = StaffChildManager
+        fields = ['child']

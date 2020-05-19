@@ -1,5 +1,5 @@
 from django.contrib import admin
-from children.models import Child, ChildRecord
+from children.models import Child, ChildRecord, StaffChildManager
 # Register your models here.
 
 @admin.register(Child)
@@ -18,5 +18,13 @@ class ChildAdmin(admin.ModelAdmin):
 class ChildRecordAdmin(admin.ModelAdmin):
     list_display = [
         "child",
+    ]
+    search_fields = ["child" ]
+
+
+@admin.register(StaffChildManager)
+class StaffChildManagerAdmin(admin.ModelAdmin):
+    list_display = [
+        "child", "staff"
     ]
     search_fields = ["child" ]
