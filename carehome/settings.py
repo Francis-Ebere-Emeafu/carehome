@@ -25,7 +25,7 @@ SECRET_KEY = '6w6m(hmduh7#1896-*h58m!3yfv@dbx5_pql8-pohfw8^&792n'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['www.carehome.emeafu.com', 'carehome.emeafu.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
