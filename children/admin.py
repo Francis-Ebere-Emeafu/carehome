@@ -16,9 +16,7 @@ class ChildAdmin(admin.ModelAdmin):
 
 @admin.register(ChildRecord)
 class ChildRecordAdmin(admin.ModelAdmin):
-    list_display = [
-        "child",
-    ]
+    list_display = ["child", "date_created", "record_active"]
     search_fields = ["child" ]
 
 

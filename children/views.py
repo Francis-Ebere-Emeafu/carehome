@@ -1,11 +1,12 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect, render, get_object_or_404
+from django.utils import timezone
 
 from accounts.models import Account
 from accounts.utils import is_manager
 from children.models import Child, ChildRecord, StaffChildManager
-from children.forms import ChildRegisterForm, ChildModifyForm
+from children.forms import ChildRegisterForm, ChildModifyForm, ChildRecordForm
 
 
 def register_child(request):
@@ -17,14 +18,7 @@ def register_child(request):
     if request.method == 'POST':
         form = ChildRegisterForm(request.POST)
         if form.is_valid():
-            # password = form.cleaned_data['password']
-            # username = form.cleaned_data['email']
-            # new_user =User.objects.create_user(username=username, email=username, password=password)
-            # new_user.save()
-            # account = form.save(commit=False)
-            # account.user = new_user
-            # account.email = username
-            # account.save()
+
             form.save(commit=True)
             messages.success(request, "New child successfully registered")
             return redirect('children_list')
@@ -71,6 +65,13 @@ def child_assignment_list(request):
     return render(request, "children/child_assignment_list.html", context)
 
 
+def my_child_selections(request):
+    me = Account.objects.get(user=request.user)
+    assigned_list = StaffChildManager.objects.filter(staff=me)
+    context = {"assigned_list": assigned_list}
+    return render(request, "children/my_child_selections.html", context)
+
+
 def select_child(request, child_id):
     child = get_object_or_404(Child, id=child_id)
     me = Account.objects.get(user=request.user)
@@ -78,3 +79,32 @@ def select_child(request, child_id):
     child.assigned = True
     child.save()
     return redirect('child_assignment_list')
+
+
+def child_record_list(request):
+    me = Account.objects.get(user=request.user)
+    children_list = StaffChildManager.objects.filter(staff=me)
+    context = {"children_list": children_list}
+    return render(request, "children/child_record_list.html", context)
+
+
+def create_edit_child_record(request, child_id):
+    child = Child.objects.get(id=child_id)
+    child_record = ChildRecord.objects.filter(child=child, record_active=True).last()
+    today = timezone.now()
+
+    if today.date() > child_record.date_created.date():
+        child_record.record_active = False
+        child_record.save()
+        record_instance = ChildRecord.objects.create(child=child, date_created=today)
+    else:
+        record_instance = child_record
+
+    form = ChildRecordForm(request.POST or None, request.FILES or None, instance=record_instance)
+    if form.is_valid():
+        form.save()
+        messages.success(request, "{}'s record successfully updated".format(child))
+        return redirect('child_record_list')
+
+    context = {"form": form, "child": child, "today": today}
+    return render(request, "children/create_edit_child_record.html", context)

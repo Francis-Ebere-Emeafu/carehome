@@ -1,0 +1,87 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+
+{% block title %}My Child Record List {% endblock title %}
+
+
+	 {% block panel %}
+   <!-- Remove panel -->
+   {% endblock panel %}
+
+{% block side_menu %}
+{% include 'base/side_menu/staff_side_menu.html' %}
+{% endblock side_menu %}
+
+{% block content %}
+<div class="col-lx-12 col-sm-12 col-md-12">
+    <div class="market-updates">
+      <div class="inbox">
+        <h2  style="text-align:center;">My Selected Child Records</h2>
+
+        <div class="col-md-10 col-sm-offset-1 mailbox-content  tab-content tab-content-in">
+          <div class="tab-pane active text-style" id="tab1">
+            <div class="mailbox-border">
+              <table class="table tab-border">
+                <tbody>
+                  <tr class="unread checked">
+                  <th class="hidden-xs">
+                  Child's Name
+                  </th>
+                  <th>
+                    Email
+                  </th>
+                  <th>
+                    phone
+                  </th>
+                  <th>
+                    Gender
+                  </th>
+                  <!-- <th style="color:">
+                    Assigned
+                  </th> -->
+  								<th style="color:blue">
+                    Update Records
+                  </th>
+  								<!-- <th style="color:#FC8213">
+                    Delete
+                  </th> -->
+                  </tr>
+                  {% for record in children_list %}
+                  <tr class="read checked">
+                    <td class="hidden-xs">
+                      <a href="{% url 'create_edit_child_record' child_id=record.child.id %}">
+                    {{ record.child.full_name }}
+                  </a>
+                    </td>
+                    <td class="hidden-xs">
+                    {{ record.child.email }}
+                    </td>
+                    <td class="hidden-xs">
+                    {{ record.child.phone }}
+                    </td>
+                  <td>
+                    {% if record.child.gender == 2 %}
+                    <span style="color:red">Not Selected</span>
+                    {% else %}
+                    {{ record.child.get_gender_display }}
+                    {% endif %}
+                  </td>
+                  <td>
+                    <div class="" style="text-align:center">
+                      <a href="{% url 'create_edit_child_record' child_id=record.child.id %}" style="color:blue">Add <i class="fa fa-refresh"></i></a>
+											<!-- <span> | </span>
+											<a href="" style="color:red"><i class="fa fa fa-trash-o"></i></a> -->
+                    </div>
+                  </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

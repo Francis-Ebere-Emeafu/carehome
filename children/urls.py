@@ -10,9 +10,9 @@ urlpatterns = [
     path("assignment/list/", views.child_assignment_list, name="child_assignment_list"),
     path("select/<int:child_id>/", views.select_child, name="select_child"),
 
-    # path("staff/list/", views.staff_management_list, name="staff_management_list"),
-    # path("delete/<int:profile_id>/", views.delete_staff, name="delete_staff"),
-    # path("delete-staff/<int:profile_id>/", views.confirm_delete_staff, name="confirm_delete_staff"),
+    path("record/list/", views.child_record_list, name="child_record_list"),
+    path("selection/list/", views.my_child_selections, name="my_child_selections"),
+    path("record/<int:child_id>/update/", views.create_edit_child_record, name="create_edit_child_record"),
     #
     # path("profile/", views.create_super_user_profile, name="profile"),
     # path("logout", views.logout_user, name="logout"),

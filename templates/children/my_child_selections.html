@@ -1,0 +1,85 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+
+{% block title %}My Child Selections {% endblock title %}
+
+
+	 {% block panel %}
+   <!-- Remove panel -->
+   {% endblock panel %}
+
+{% block side_menu %}
+{% include 'base/side_menu/staff_side_menu.html' %}
+{% endblock side_menu %}
+
+{% block content %}
+<div class="col-lx-12 col-sm-12 col-md-12">
+    <div class="market-updates">
+      <div class="inbox">
+        <h2  style="text-align:center;">My Child Selections</h2>
+
+        <div class="col-md-10 col-sm-offset-1 mailbox-content  tab-content tab-content-in">
+          <div class="tab-pane active text-style" id="tab1">
+            <div class="mailbox-border">
+              <table class="table tab-border">
+                <tbody>
+                  <tr class="unread checked">
+                  <th class="hidden-xs">
+                  Child's Name
+                  </th>
+                  <th>
+                    Email
+                  </th>
+                  <th>
+                    phone
+                  </th>
+                  <th>
+                    Gender
+                  </th>
+                  <!-- <th style="color:">
+                    Assigned
+                  </th> -->
+  								<th style="color:blue">
+                    Modify Selection
+                  </th>
+  								<!-- <th style="color:#FC8213">
+                    Delete
+                  </th> -->
+                  </tr>
+                  {% for assigned in assigned_list %}
+                  <tr class="read checked">
+                    <td class="hidden-xs">
+                    {{ assigned.child.full_name }}
+                    </td>
+                    <td class="hidden-xs">
+                    {{ assigned.child.email }}
+                    </td>
+                    <td class="hidden-xs">
+                    {{ assigned.child.phone }}
+                    </td>
+                  <td>
+                    {% if assigned.child.gender == 2 %}
+                    <span style="color:red">Not Selected</span>
+                    {% else %}
+                    {{ assigned.child.get_gender_display }}
+                    {% endif %}
+                  </td>
+                  <td>
+                    <div class="" style="text-align:center">
+                      <a href="{% url 'modify_child_details' child_id=assigned.child.id %}" style="color:blue">Edit <i class="fa fa-pencil"></i></a>
+											<span> | </span>
+											<a href="" style="color:red"><i class="fa fa fa-trash-o"></i></a>
+                    </div>
+                  </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

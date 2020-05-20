@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
 
 from workbook.models import StaffTask, Task
 from workbook.forms import StaffTaskForm, AssignTaskForm
@@ -21,28 +22,28 @@ def create_task(request):
             return redirect('manage_all_task')
     else:
         form = StaffTaskForm()
-    return render(request, "task/create_task.html", {"form": form})
+    return render(request, "workbook/create_task.html", {"form": form})
 
 
 def manage_all_task(request):
     staff = Account.objects.filter(user_type=Account.STAFF)
     tasks = StaffTask.objects.all()
     context = {"staff_list": staff, "tasks": tasks}
-    return render(request, "task/manage_all_task.html", context)
+    return render(request, "workbook/manage_all_task.html", context)
 
 
 def completed_task(request):
     staff = Account.objects.filter(user_type=Account.STAFF)
     tasks = StaffTask.objects.filter(completed=True)
     context = {"staff_list": staff, "tasks": tasks}
-    return render(request, "task/completed_task.html", context)
+    return render(request, "workbook/completed_task.html", context)
 
 
 def incompleted_task(request):
     staff = Account.objects.filter(user_type=Account.STAFF)
     tasks = StaffTask.objects.filter(completed=False)
     context = {"staff_list": staff, "tasks": tasks}
-    return render(request, "task/incompleted_task.html", context)
+    return render(request, "workbook/incompleted_task.html", context)
 
 
 def edit_task(request, task_id=None):
@@ -58,14 +59,14 @@ def edit_task(request, task_id=None):
         messages.success(request, "Task successfully updated")
         return redirect('manage_all_task')
     context = {"task": task, "form": form}
-    return render(request, "task/edit_task.html", context)
+    return render(request, "workbook/edit_task.html", context)
 
 
 def assign_task_list(request):
     form = AssignTaskForm()
     tasks = StaffTask.objects.filter(completed=False)
     context = {"tasks": tasks, "form": form}
-    return render(request, "task/assign_task_list.html", context)
+    return render(request, "workbook/assign_task_list.html", context)
 
 
 def assign_task(request, task_id, staff_id):
@@ -82,7 +83,7 @@ def delete_task(request, task_id):
         logout(request)
         return redirect('login')
     task = get_object_or_404(StaffTask, id=task_id)
-    return render(request, 'task/delete_task.html', {"task": task})
+    return render(request, 'workbook/delete_task.html', {"task": task})
 
 
 def confirm_delete_task(request, task_id):
@@ -94,3 +95,17 @@ def confirm_delete_task(request, task_id):
     task.delete()
     messages.success(request, "{} Task was successfully deleted".format(task))
     return redirect('manage_all_task')
+
+
+def staff_task_list(request):
+    account = Account.objects.get(user=request.user)
+    task_list = StaffTask.objects.filter(staff=account)
+    context = {"task_list": task_list}
+    return render(request, "workbook/staff_task_list.html", context)
+
+
+def staff_complted_tasks(request):
+    account = Account.objects.get(user=request.user)
+    completed_task_list = StaffTask.objects.filter(staff=account, completed=True)
+    context = {"completed_task_list": completed_task_list}
+    return render(request, "workbook/staff_complted_tasks.html", context)

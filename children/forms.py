@@ -68,7 +68,7 @@ class ChildModifyForm(forms.ModelForm):
 class ChildRecordForm(forms.ModelForm):
     class Meta:
         model = ChildRecord
-        fields = ['child', 'feeding', 'medication', 'behaviour', 'notes', 'visit']
+        fields = ['feeding', 'medication', 'behaviour', 'notes', 'visit']
 
 
 class StaffChildManagerForm(forms.ModelForm):

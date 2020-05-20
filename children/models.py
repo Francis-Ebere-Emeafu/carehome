@@ -31,12 +31,19 @@ class Child(models.Model):
 
 class ChildRecord(models.Model):
     child = models.ForeignKey(Child, on_delete=models.CASCADE)
-    feeding = models.TextField()
-    medication = models.TextField()
-    behaviour = models.TextField()
-    notes = models.TextField()
-    visit = models.TextField()
+    feeding = models.TextField(null=True, blank=True)
+    medication = models.TextField(null=True, blank=True)
+    behaviour = models.TextField(null=True, blank=True)
+    notes = models.TextField(null=True, blank=True)
+    visit = models.TextField(null=True, blank=True)
     record_active = models.BooleanField(default=True)
+    date_created = models.DateTimeField(auto_now_add=False, auto_now=False)
+
+    def __str__(self):
+        return "{} {}".format(self.child, self.date_created)
+
+    class Meta:
+        ordering = ["-date_created", "-id"]
 
 
 class StaffChildManager(models.Model):

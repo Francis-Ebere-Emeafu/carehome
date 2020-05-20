@@ -1,0 +1,79 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+
+{% block title %}Update Child's Record {% endblock title %}
+
+
+	 {% block panel %}
+   <!-- Remove panel -->
+   {% endblock panel %}
+
+{% block side_menu %}
+{% include 'base/side_menu/staff_side_menu.html' %}
+{% endblock side_menu %}
+
+{% block content %}
+<div class="market-updates">
+    <div class="inbox" >
+    	  <h2  style="text-align:center;">
+					<span style="color:#FC8213">{{ child.full_name }}'s</span> Record Update <br>
+          <small style="color:blue;">For: <span style="color:#FC0213">{{ today.date }}</span></small>
+				</h2>
+			<div class="col-md-6 col-sm-offset-3 compose-right">
+				<div class="inbox-details-default">
+					<div class="inbox-details-heading" style="text-align:center;">
+						Please fill and update the form below to enter child's record
+					</div>
+
+					<div class="inbox-details-body">
+
+						<form class="" action="" method="post" id="myRegForm">{% csrf_token %}
+							{{ form }}
+							<input type="submit" name="" onclick="" value="Submit">
+
+						</form>
+					</div>
+				</div>
+			</div>
+
+          <div class="clearfix"> </div>
+   </div>
+</div>
+
+
+{% endblock content %}
+
+
+
+
+{% block extra-js %}
+<script>
+	$('#id_email').attr('placeholder', 'Email');
+	$('#id_email').addClass('form-control');
+
+	$('#id_user_type').attr('placeholder', 'Select Staff Type');
+	$('#id_user_type').addClass('form-control');
+
+	$('#id_first_name').attr('placeholder', 'First Name');
+	$('#id_first_name').addClass('form-control');
+
+	$('#id_last_name').attr('placeholder', 'Last Name');
+	$('#id_last_name').addClass('form-control');
+
+	$('#id_phone').attr('placeholder', 'Phone Number');
+	$('#id_phone').addClass('form-control');
+
+	$('#id_confirm').attr('placeholder', 'Confirm Password');
+	$('#id_confirm').addClass('form-control');
+
+	$('#id_password').attr('placeholder', 'Password');
+	$('#id_password').addClass('form-control');
+
+	$('#id_button').addClass('form-control');
+
+	function submit() {
+  /*Put all the data posting code here*/
+ document.getElementById("myRegForm").reset();
+}
+</script>
+{% endblock extra-js %}
