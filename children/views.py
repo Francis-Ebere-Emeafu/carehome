@@ -94,6 +94,7 @@ def create_edit_child_record(request, child_id):
     today = timezone.now()
 
     if today.date() > child_record.date_created.date():
+        print(today.date())
         child_record.record_active = False
         child_record.save()
         record_instance = ChildRecord.objects.create(child=child, date_created=today)
