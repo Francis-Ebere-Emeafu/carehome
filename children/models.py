@@ -4,6 +4,17 @@ from django.utils import timezone
 from datetime import datetime
 
 from accounts.models import Account
+from workbook.models import (
+    Task, StaffTask,
+    EmotionalWellbeing,
+    HealthHygiene,
+    Education,
+    Activity,
+    Achievement,
+    Appointment,
+    KeyWork,
+    Incident,
+    )
 
 
 class Child(models.Model):
@@ -16,13 +27,20 @@ class Child(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     gender = models.PositiveIntegerField(choices=GENDER, default=SELECT)
+    legal_status = models.CharField(max_length=50)
+    birth_date = models.DateField()
     phone = models.CharField(max_length=20)
     email = models.EmailField()
+    image = models.ImageField(upload_to='profile_pics', null=True, blank=True)
     assigned = models.BooleanField(default=False)
     when = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return "{} {}".format(self.first_name, self.last_name)
+
+    def image_url(self):
+        if self.image and hasattr(self.image, 'url'):
+            return self.image.url
 
     @property
     def full_name(self):
@@ -31,11 +49,16 @@ class Child(models.Model):
 
 class ChildRecord(models.Model):
     child = models.ForeignKey(Child, on_delete=models.CASCADE)
-    feeding = models.TextField(null=True, blank=True)
-    medication = models.TextField(null=True, blank=True)
-    behaviour = models.TextField(null=True, blank=True)
     notes = models.TextField(null=True, blank=True)
-    visit = models.TextField(null=True, blank=True)
+    emotional_wellbeing = models.ForeignKey(EmotionalWellbeing,  on_delete=models.CASCADE, null=True, blank=True)
+    health_hygiene = models.ForeignKey(HealthHygiene,  on_delete=models.CASCADE, null=True, blank=True)
+    education = models.ForeignKey(Education,  on_delete=models.CASCADE, null=True, blank=True)
+    activities = models.ForeignKey(Activity,  on_delete=models.CASCADE, null=True, blank=True)
+    achievements = models.ForeignKey(Achievement,  on_delete=models.CASCADE, null=True, blank=True)
+    appointments_contact = models.ForeignKey(Appointment,  on_delete=models.CASCADE, null=True, blank=True)
+    key_work = models.ForeignKey(KeyWork,  on_delete=models.CASCADE, null=True, blank=True)
+    incidents = models.ForeignKey(Incident,  on_delete=models.CASCADE, null=True, blank=True)
+    addtional_info = models.TextField(null=True, blank=True)
     record_active = models.BooleanField(default=True)
     date_created = models.DateTimeField(auto_now_add=False, auto_now=False)
 

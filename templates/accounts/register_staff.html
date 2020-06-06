@@ -27,7 +27,7 @@
 
 					<div class="inbox-details-body">
 
-						<form class="" action="" method="post" id="myRegForm">{% csrf_token %}
+						<form class="" action="" method="post" id="myRegForm" enctype="multipart/form-data">{% csrf_token %}
 							{{ form }}
 							<input type="submit" name="" onclick="" value="Submit">
 
@@ -71,10 +71,6 @@
 
 	$('#id_button').addClass('form-control');
 
-	function submit() {
-  /*Put all the data posting code here*/
- document.getElementById("myRegForm").reset();
-}
 </script>
 {% endblock extra-js %}
 

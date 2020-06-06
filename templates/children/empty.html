@@ -1,0 +1,142 @@
+
+<div class="market-updates">
+    <div class="inbox" >
+    	  <h2  style="text-align:center;">
+					<span style="color:#FC8213">{{ child.full_name }}'s</span> Record Update <br>
+          <small style="color:blue;">For: <span style="color:#FC0213">{{ today.date }}</span></small>
+				</h2>
+			<div class="col-md-6 col-sm-offset-3 compose-right">
+				<div class="inbox-details-default">
+					<div class="inbox-details-heading" style="text-align:center;">
+						Please fill and update the form below to enter child's record
+					</div>
+					<div class="inbox-details-body">
+
+						<form class="" action="" method="POST" id="regForm">{% csrf_token %}
+						  <!-- One "tab" for each step in the form: -->
+						  <div class="tab">Notes:
+						    {{ form.notes }}
+						  </div>
+
+							measure
+							degree
+							comment
+
+							{% comment %}{{emotional_form.daytime}}{% endcomment %}
+							<div class="tab">Emotional Wellbeing:
+								{% for field in emotional_form.visible_fields %}
+									{{ field }}
+								{% endfor %}
+							</div>
+
+						  <div class="tab">Health & Hygiene:
+								{{health_form}}
+							</div>
+
+						  <div class="tab">Education:
+								{{education_form}}
+							</div>
+
+						  <div class="tab">Activities:
+								{{activity_form}}
+							</div>
+
+							<div class="tab">Achievements:
+								{{achievement_form}}
+							</div>
+
+							<div class="tab">Appointments & Contact:
+								{{appointment_form}}
+							</div>
+
+							<div class="tab">Key Work:
+								{{key_form}}
+							</div>
+
+							<div class="tab">Incidents:
+								{{indident_form}}
+							</div>
+
+							<div class="tab">Notes:
+						    {{ form.addtional_info }}
+						  </div>
+
+						  <div style="overflow:auto;">
+						    <div style="float:right;">
+						      <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+						      <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+						    </div>
+						  </div>
+
+						  <!-- Circles which indicates the steps of the form: -->
+						  <div style="text-align:center;margin-top:40px;">
+								<span class="step"></span>
+						    <span class="step"></span>
+						    <span class="step"></span>
+						    <span class="step"></span>
+								<span class="step"></span>
+						    <span class="step"></span>
+						    <span class="step"></span>
+						    <span class="step"></span>
+								<span class="step"></span>
+						    <span class="step"></span>
+						  </div>
+						</form>
+
+						{% comment %}
+						<!-- This is the complete form  -->
+						<form class="" action="" method="post" id="">{% csrf_token %}
+							{{ form }}
+							{{child}}
+							{{today}}
+							{{food_form}}
+							<input type="submit" name="" onclick="" value="Submit">
+						</form>
+						{% endcomment %}
+
+					</div>
+				</div>
+			</div>
+      <div class="clearfix"> </div>
+   </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+{% render_field emotional_form.daytime class="form-control" placeholder=emotional_form.daytime.label %}
+
+{{ emotional_form.daytime|as_crispy_field }}
+{{ emotional_form.measure|as_crispy_field }}
+
+
+daytime
+measure
+degree
+comment
+
+
+
+
+
+
+
+
+{% for hidden in emotional_form.hidden_fields %}
+      {{ hidden }}
+    {% endfor %}
+{% for field in emotional_form.visible_fields %}
+		 <div class="form-group">
+			 <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+			 {{ field }}
+			 {% comment %}{% for error in field.errors %} <span class="help-block">{{ error }}</span> {% endfor %}{% endcomment %}
+		 </div>
+	 {% endfor %}

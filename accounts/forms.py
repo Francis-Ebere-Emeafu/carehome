@@ -9,8 +9,6 @@ from accounts.utils import get_username_for_auth
 
 
 class RegForm(forms.ModelForm):
-    print("RegForm ----------")
-    # email = forms.EmailField()
     password = forms.CharField(
         max_length=100, widget=forms.PasswordInput, validators=[validate_password]
     )
@@ -18,7 +16,7 @@ class RegForm(forms.ModelForm):
 
     class Meta:
         model = Account
-        fields = ['first_name', 'last_name', 'phone', 'user_type', 'email']
+        fields = ['first_name', 'last_name', 'phone', 'user_type', 'email', 'password', 'confirm', 'image' ]
 
     def clean_email(self):
         if 'email' in self.cleaned_data:

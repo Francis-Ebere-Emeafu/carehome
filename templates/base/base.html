@@ -18,10 +18,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css" media="all">
 <!-- Custom Theme files -->
 <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" media="all"/>
+<link href="{% static 'css/_tab_style.css' %}" rel="stylesheet" type="text/css" media="all"/>
 <!--js-->
 <script src="{% static 'js/jquery-2.1.1.min.js' %}"></script>
 <!--icons-css-->
 <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet">
+{% block extra-css %}
+{% endblock extra-css %}
 <!--Google Fonts-->
 <link href='//fonts.googleapis.com/css?family=Carrois+Gothic' rel='stylesheet' type='text/css'>
 <link href='//fonts.googleapis.com/css?family=Work+Sans:400,500,600' rel='stylesheet' type='text/css'>
@@ -131,13 +134,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		</script>
 		<!-- /script-for sticky-nav -->
 <!--inner block start here-->
-<div class="inner-block" style="min-height:800px">
+<div class="inner-block" style="min-height:1000px">
 <!--market updates updates-->
 
 	 {% block panel %}
    {% include 'base/panels.html' %}
    {% endblock panel %}
-   
+
 <!--market updates end here-->
 <!--mainpage chit-chating-->
 <div class="chit-chat-layer1">
@@ -192,8 +195,8 @@ $(".sidebar-icon").click(function() {
             });
 </script>
 <!--scrolling js-->
-		<script src="{% static 'js/jquery.nicescroll.js' %}"></script>
-		<script src="{% static 'js/scripts.js' %}"></script>
+<script src="{% static 'js/jquery.nicescroll.js' %}"></script>
+<script src="{% static 'js/scripts.js' %}"></script>
 		<!--//scrolling js-->
 <script src="{% static 'js/bootstrap.js' %}"> </script>
 {% block extra-js %}

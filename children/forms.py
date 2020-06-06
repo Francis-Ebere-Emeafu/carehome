@@ -1,7 +1,8 @@
 from django import forms
+# from django.forms.extras import SelectDateWidget
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.models import User
-
+from django.utils import timezone
 
 from children.models import Child, ChildRecord, StaffChildManager
 from accounts.models import Account
@@ -25,13 +26,17 @@ class AssignTaskForm(forms.ModelForm):
 
 
 class ChildRegisterForm(forms.ModelForm):
-    # GENDER = enumerate(('Male', 'Female', 'Select'))
-    # password = forms.CharField(max_length=100, widget=forms.PasswordInput, validators=[validate_password])
-    # confirm = forms.CharField(max_length=100, widget=forms.PasswordInput)
-    # gender = forms.ChoiceField(choices=GENDER, label='Select Gender')
     class Meta:
         model = Child
-        fields = ['first_name', 'last_name', 'phone', 'email', 'gender']
+        fields = [
+            'first_name', 'last_name',
+            'gender', 'birth_date',
+            'phone', 'email',
+            'legal_status', 'image',
+            ]
+        widgets = {
+            'birth_date': forms.DateInput(format=('%m/%d/%Y'), attrs={'type':'date'}),
+        }
 
     def clean_email(self):
         if 'email' in self.cleaned_data:
@@ -62,14 +67,41 @@ class ChildRegisterForm(forms.ModelForm):
 class ChildModifyForm(forms.ModelForm):
     class Meta:
         model = Child
-        fields = ['first_name', 'last_name', 'phone', 'email', 'gender']
+        fields = fields = [
+            'first_name', 'last_name',
+            'gender', 'birth_date',
+            'phone', 'email',
+            'legal_status', 'image',
+            ]
+        widgets = {
+            'birth_date': forms.DateInput(format=('%m/%d/%Y'), attrs={'type':'date'}),
+        }
 
 
 class ChildRecordForm(forms.ModelForm):
     class Meta:
         model = ChildRecord
-        fields = ['feeding', 'medication', 'behaviour', 'notes', 'visit']
+        fields = ['notes', 'addtional_info']
+        # fields = '__all__'
 
+"""
+notes
+emotional_wellbeing
+health_hygiene
+education
+activities
+achievements
+appointments_contact
+key_work
+incidents
+addtional_info
+
+choices = forms.CharField(label='TEXT', widget=forms.RadioSelect(Choices=SOME_CHOICES))
+widget=forms.Select(choices=CHOICES)
+widget=forms.CheckboxInputSelect(choices=CHOICES)
+widget=forms.CheckboxSelectMultiple(choices=CHOICES)
+date = forms.DateField(widget=forms.SelectDateWidget)
+"""
 
 class StaffChildManagerForm(forms.ModelForm):
     children = Child.objects.filter(assigned=False)

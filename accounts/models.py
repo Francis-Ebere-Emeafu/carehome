@@ -16,6 +16,7 @@ class Account(models.Model):
     last_name = models.CharField(max_length=50)
     phone = models.CharField(max_length=20)
     email = models.EmailField()
+    image = models.ImageField(upload_to='profile_pics', null=True, blank=True)
     active = models.BooleanField(default=True)
     when = models.DateTimeField(auto_now_add=True)
 
@@ -24,6 +25,10 @@ class Account(models.Model):
 
     def get_absolute_url(self):
         return reverse("", kwargs={"id": self.id})
+
+    def image_url(self):
+        if self.image and hasattr(self.image, 'url'):
+            return self.image.url
 
     @property
     def full_name(self):

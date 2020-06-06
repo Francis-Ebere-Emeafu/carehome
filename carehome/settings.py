@@ -31,6 +31,10 @@ ALLOWED_HOSTS = ['www.carehome.emeafu.com', 'carehome.emeafu.com', 'localhost', 
 # Application definition
 
 INSTALLED_APPS = [
+    # Auto complete DAL app
+    'dal',
+    'dal_select2',
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,11 +42,19 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # Third Party Applications
+    'widget_tweaks',
+    'crispy_forms',
+
+    # Custom Apps
     'accounts.apps.AccountsConfig',
     'children.apps.ChildrenConfig',
     'workbook.apps.WorkbookConfig',
     # 'Home.apps.HomeConfig',
 ]
+# Selecting Crispy Template Pack
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -69,6 +81,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                # custom context_processors
+                'accounts.context_processors.accounts.account',
             ],
         },
     },

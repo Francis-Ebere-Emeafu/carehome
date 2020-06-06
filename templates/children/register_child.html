@@ -27,7 +27,7 @@
 
 					<div class="inbox-details-body">
 
-						<form class="" action="" method="post" id="">{% csrf_token %}
+						<form class="" action="" method="post" id="" enctype="multipart/form-data">{% csrf_token %}
 							{{ form }}
 							<input type="submit" name="" onclick="" value="Register Child">
 
@@ -63,11 +63,14 @@
 	$('#id_phone').attr('placeholder', 'Phone Number');
 	$('#id_phone').addClass('form-control');
 
-	$('#id_confirm').attr('placeholder', 'Confirm Password');
-	$('#id_confirm').addClass('form-control');
+	$('#id_birth_date').attr('placeholder', 'Date of Birth');
+	$('#id_birth_date').addClass('form-control');
 
-	$('#id_password').attr('placeholder', 'Password');
-	$('#id_password').addClass('form-control');
+	$('#id_legal_status').attr('placeholder', 'Legal Status');
+	$('#id_legal_status').addClass('form-control');
+
+	$('#id_i_mage').attr('placeholder', 'Childs Picture');
+	$('#id_i_mage').addClass('form-control');
 
 	$('#id_button').addClass('form-control');
 

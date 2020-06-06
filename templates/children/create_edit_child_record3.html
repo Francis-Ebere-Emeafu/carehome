@@ -1,0 +1,9 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+{{ personal_data_form|crispy }}
+{% endblock content %}

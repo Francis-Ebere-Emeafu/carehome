@@ -7,7 +7,7 @@
 				<div class="header-main">
 					<div class="header-left">
 							<div class="logo-name">
-									 <a href="index.html"> <h1>CareHome</h1>
+									 <a href="{% url 'home' %}"> <h1>CareHome</h1>
 									<!--<img id="logo" src="" alt="Logo"/>-->
 								  </a>
 							</div>
@@ -25,6 +25,7 @@
 						 <div class="header-right">
 							<div class="profile_details_left"><!--notifications of menu start -->
 								<ul class="nofitications-dropdown">
+                  {% comment %}
 									<li class="dropdown head-dpdn">
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-envelope"></i><span class="badge">3</span></a>
 										<ul class="dropdown-menu">
@@ -103,6 +104,7 @@
 											</li>
 										</ul>
 									</li>
+                  {% endcomment %}
 									<li class="dropdown head-dpdn">
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-tasks"></i><span class="badge blue1">9</span></a>
 										<ul class="dropdown-menu">
@@ -178,11 +180,8 @@
                       <li> <a href="#"><i class="fa fa-cog"></i> Settings</a> </li>
                       <li> <a href="#"><i class="fa fa-user"></i> Profile</a> </li>
                       -->
-                      {% block dropdown_profile %}
-
-                      {% endblock dropdown_profile %}
-
-											<li> <a href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> Logout</a> </li>
+                      <li> <a href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> Logout</a> </li>
+											<li> <a href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> Settings</a> </li>
 										</ul>
 									</li>
 								</ul>

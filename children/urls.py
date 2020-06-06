@@ -13,7 +13,8 @@ urlpatterns = [
     path("record/list/", views.child_record_list, name="child_record_list"),
     path("selection/list/", views.my_child_selections, name="my_child_selections"),
     path("record/<int:child_id>/update/", views.create_edit_child_record, name="create_edit_child_record"),
+
     #
-    # path("profile/", views.create_super_user_profile, name="profile"),
+    path("create/record", views.create_record, name="create_record"),
     # path("logout", views.logout_user, name="logout"),
 ]

@@ -1,9 +1,11 @@
-from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.shortcuts import redirect, render, get_object_or_404
+
 from accounts.models import Account
+from children.models import Child, ChildRecord, StaffChildManager
 
 from accounts.forms import RegForm, LoginForm, ModifyForm
 from accounts.utils import get_username_for_auth, is_manager
@@ -16,7 +18,7 @@ def register_staff(request):
         return redirect('login')
 
     if request.method == 'POST':
-        form = RegForm(request.POST)
+        form = RegForm(request.POST, request.FILES or None)
         if form.is_valid():
             password = form.cleaned_data['password']
             username = form.cleaned_data['email']
@@ -110,7 +112,9 @@ def delete_staff(request, profile_id):
 
 def staff_profile(request):
     account = Account.objects.get(user=request.user)
-    context = {"account": account}
+    assigned_list = StaffChildManager.objects.filter(staff=account)
+    children_list = Child.objects.filter(assigned=False)
+    context = {"account": account, "children_list": children_list, "assigned_list": assigned_list}
     return render(request, 'accounts/staff.html', context)
 
 

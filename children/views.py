@@ -7,7 +7,18 @@ from accounts.models import Account
 from accounts.utils import is_manager
 from children.models import Child, ChildRecord, StaffChildManager
 from children.forms import ChildRegisterForm, ChildModifyForm, ChildRecordForm
-
+from workbook.forms2 import PersonalDataForm
+from workbook.forms import (
+        FoodForm,
+        EmotionalWellbeingForm,
+        HealthHygieneForm,
+        EducationForm,
+        ActivityForm,
+        AchievementForm,
+        AppointmentForm,
+        KeyWorkForm,
+        IncidentForm,
+        )
 
 def register_child(request):
     if not is_manager(user=request.user):
@@ -16,7 +27,7 @@ def register_child(request):
         return redirect('login')
 
     if request.method == 'POST':
-        form = ChildRegisterForm(request.POST)
+        form = ChildRegisterForm(request.POST, request.FILES or None)
         if form.is_valid():
 
             form.save(commit=True)
@@ -90,16 +101,31 @@ def child_record_list(request):
 
 def create_edit_child_record(request, child_id):
     child = Child.objects.get(id=child_id)
-    child_record = ChildRecord.objects.filter(child=child, record_active=True).last()
     today = timezone.now()
+    child_record = ChildRecord.objects.filter(child=child, record_active=True).last()
+    if not child_record:
+        # No initial child's record, hence create a fresh record for the child
+        child_record = ChildRecord.objects.create(child=child, date_created=today)
 
     if today.date() > child_record.date_created.date():
-        print(today.date())
+        # confirm if the day is over and start a new child's record
         child_record.record_active = False
         child_record.save()
         record_instance = ChildRecord.objects.create(child=child, date_created=today)
     else:
         record_instance = child_record
+
+
+    personal_data_form = PersonalDataForm(request.POST or None)
+    food_form = FoodForm(request.POST or None)
+    emotional_form = EmotionalWellbeingForm(request.POST or None)
+    health_form = HealthHygieneForm(request.POST or None)
+    education_form = EducationForm(request.POST or None)
+    activity_form = ActivityForm(request.POST or None)
+    achievement_form = AchievementForm(request.POST or None)
+    appointment_form = AppointmentForm(request.POST or None)
+    key_form = KeyWorkForm(request.POST or None)
+    indident_form = IncidentForm(request.POST or None)
 
     form = ChildRecordForm(request.POST or None, request.FILES or None, instance=record_instance)
     if form.is_valid():
@@ -107,5 +133,30 @@ def create_edit_child_record(request, child_id):
         messages.success(request, "{}'s record successfully updated".format(child))
         return redirect('child_record_list')
 
-    context = {"form": form, "child": child, "today": today}
+    context = {
+            "form": form,
+            "child": child,
+            "today": today,
+            'food_form':food_form,
+            'emotional_form':emotional_form,
+            'health_form':health_form,
+            'education_form':education_form,
+            'activity_form':activity_form,
+            'achievement_form':achievement_form,
+            'appointment_form':appointment_form,
+            'key_form':key_form,
+            'indident_form':indident_form,
+            'personal_data_form': personal_data_form,
+            }
     return render(request, "children/create_edit_child_record.html", context)
+
+
+def create_record(request):
+    if request.method == 'POST':
+        form = EmotionalWellbeingForm(request.POST or None)
+        if form.is_valid():
+            form.save()
+            return redirect('create_record')
+    else:
+        form = EmotionalWellbeingForm()
+    return render(request, 'children/create_record.html', {"form": form})
