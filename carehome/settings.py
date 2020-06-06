@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Third Party Applications
-    'widget_tweaks',
+    # 'widget_tweaks',
     'crispy_forms',
 
     # Custom Apps
