@@ -5,7 +5,7 @@ from crispy_forms.bootstrap import Field, InlineRadios, TabHolder, Tab
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Div, Fieldset
 
-from dal import autocomplete
+# from dal import autocomplete
 
 
 from accounts.models import Account
@@ -80,7 +80,7 @@ class FoodForm(forms.ModelForm):
     # meal = forms.ChoiceField(choices=MEALTYPE, widget=forms.RadioSelect())
     mean = forms.ModelChoiceField(
         queryset=Food.objects.all(),
-        widget=autocomplete.ModelSelect2(url='food_autocomplete')
+        # widget=autocomplete.ModelSelect2(url='food_autocomplete')
     )
     class Meta:
         model = Food

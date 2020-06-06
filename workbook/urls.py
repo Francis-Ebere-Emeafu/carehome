@@ -22,6 +22,6 @@ urlpatterns = [
     # path("logout", views.logout_user, name="logout"),
 
     # Auto complete form query link
-    path("food-autocomplete", views.FoodAutocomp.as_view(), name="food_autocomplete"),
+    # path("food-autocomplete", views.FoodAutocomp.as_view(), name="food_autocomplete"),
 
 ]

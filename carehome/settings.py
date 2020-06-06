@@ -32,9 +32,9 @@ ALLOWED_HOSTS = ['www.carehome.emeafu.com', 'carehome.emeafu.com', 'localhost', 
 
 INSTALLED_APPS = [
     # Auto complete DAL app
-    'dal',
-    'dal_select2',
-    
+    # 'dal',
+    # 'dal_select2',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

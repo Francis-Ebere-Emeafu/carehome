@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 
-from dal import autocomplete
+# from dal import autocomplete
 
 from workbook.models import StaffTask, Task, Food
 from workbook.forms import StaffTaskForm, AssignTaskForm
@@ -112,10 +112,10 @@ def staff_complted_tasks(request):
     context = {"completed_task_list": completed_task_list}
     return render(request, "workbook/staff_complted_tasks.html", context)
 
-
-class FoodAutocomp(autocomplete.Select2QuerySetView):
-    def get_queryset(self):
-        qs = Food.objects.all()
-        if self.q:
-            qs = qs.filter(name__istartswith=self.q)
-        return qs
+#
+# class FoodAutocomp(autocomplete.Select2QuerySetView):
+#     def get_queryset(self):
+#         qs = Food.objects.all()
+#         if self.q:
+#             qs = qs.filter(name__istartswith=self.q)
+#         return qs
