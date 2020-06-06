@@ -331,7 +331,7 @@ function fixStepIndicator(n) {
 $(document).ready(function(){
   	$("input[type='radio']").click(function () {
        $('.btn_label').removeClass('active');
-  	 	var activespan=$(this).attr("input[type='radio']");
+  	 	var activespan=$(this).attr("run");
   	 	$('.'+activespan).addClass('active');
   	});
   });

@@ -1610,13 +1610,13 @@ code {
   /* font-size: 2em;  */
 }
 
-.active {
+.btn_label .active {
   background: #68AE00;
 }
 
-.tab-pane .active {
+/* .tab-pane .activate {
   background: #ffffff;
-}
+} */
 .btn-group-class{
   padding-top: 10px;
   padding-bottom: 20px;
