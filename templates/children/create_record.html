@@ -2,11 +2,12 @@
 {% load staticfiles %}
 {% comment %}
 {% load widget_tweaks %}
-{% endcomment %}
+
 {% load crispy_forms_tags %}
-
-
   {{ form|crispy}}
+{% endcomment %}
+
+
 {% block content %}
 <form class="" action="" method="POST">{% csrf_token %}
 
@@ -52,7 +53,7 @@
       </div>
     </div>
 
-    {{ form.comment|as_crispy_field }}
+    {{ form.comment }}
   </div>
 
 

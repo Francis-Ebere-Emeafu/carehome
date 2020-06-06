@@ -1,9 +1,9 @@
 from django import forms
 from django.urls import reverse
 
-from crispy_forms.bootstrap import Field, InlineRadios, TabHolder, Tab
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit, Layout, Div, Fieldset
+# from crispy_forms.bootstrap import Field, InlineRadios, TabHolder, Tab
+# from crispy_forms.helper import FormHelper
+# from crispy_forms.layout import Submit, Layout, Div, Fieldset
 
 # from dal import autocomplete
 

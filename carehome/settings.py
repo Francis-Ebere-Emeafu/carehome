@@ -44,7 +44,7 @@ INSTALLED_APPS = [
 
     # Third Party Applications
     # 'widget_tweaks',
-    'crispy_forms',
+    # 'crispy_forms',
 
     # Custom Apps
     'accounts.apps.AccountsConfig',
