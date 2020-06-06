@@ -1610,7 +1610,7 @@ code {
   /* font-size: 2em;  */
 }
 
-.btn_label .active {
+.btn-group-class .active {
   background: #68AE00;
 }
 

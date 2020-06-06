@@ -217,29 +217,10 @@
 
 {% block extra-js %}
 <script>
-	//
+
 	// $('#id_daytime').attr('placeholder', 'Select Daytime');
 	// $('#id_daytime').addClass('_form-control');
-	//
-	// $('#id_measure').attr('placeholder', 'Select Staff Type');
-	// $('#id_measure').addClass('_form-control');
-	//
-	// $('#id_degree').attr('placeholder', 'First Name');
-	// $('#id_degree').addClass('_form-control');
-	//
-	// $('#id_comment').attr('placeholder', 'Last Name');
-	// $('#id_comment').addClass('form-control');
-	//
-	// $('#id_phone').attr('placeholder', 'Phone Number');
-	// $('#id_phone').addClass('form-control');
-	//
-	// $('#id_confirm').attr('placeholder', 'Confirm Password');
-	// $('#id_confirm').addClass('form-control');
-	//
-	// $('#id_password').attr('placeholder', 'Password');
-	// $('#id_password').addClass('form-control');
 
-	$('#id_button').addClass('form-control');
 </script>
 
 
@@ -328,13 +309,13 @@ function fixStepIndicator(n) {
 //     });
 // });
 
-$(document).ready(function(){
-  	$("input[type='radio']").click(function () {
-       $('.btn_label').removeClass('active');
-  	 	var activespan=$(this).attr("run");
-  	 	$('.'+activespan).addClass('active');
-  	});
-  });
+// $(document).ready(function(){
+// 	$("input[type='radio']").click(function () {
+// 		$('.btn_label').removeClass('active');
+// 		var activespan=$(this).attr("for");
+// 		$('.'+activespan).addClass('active');
+// 	});
+// });
 
 </script>
 {% endblock extra-js %}
