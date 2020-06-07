@@ -88,18 +88,19 @@ class FoodForm(forms.ModelForm):
 
 
 class EmotionalWellbeingForm(forms.ModelForm):
-    daytime = forms.ChoiceField(choices=DAYTIME0, widget=forms.RadioSelect())
+    # daytime = forms.ChoiceField(choices=DAYTIME0, widget=forms.RadioSelect())
     measure = forms.ChoiceField(choices=MEASURE, widget=forms.RadioSelect())
     degree = forms.ChoiceField(choices=DEGREE, widget=forms.RadioSelect())
 
     class Meta:
         model = EmotionalWellbeing
-        fields = ['daytime', 'measure', 'degree', 'comment',]
+        fields = ['measure', 'degree', 'comment',]
+        # 'daytime',
 
 # diet_nutrition
 
 class HealthHygieneForm(forms.ModelForm):
-    daytime = forms.ChoiceField(choices=DAYTIME1, widget=forms.RadioSelect())
+    # daytime = forms.ChoiceField(choices=DAYTIME1, widget=forms.RadioSelect())
     medication_taken = forms.ChoiceField(choices=ANSWER0, widget=forms.RadioSelect())
     teeth_brushed = forms.ChoiceField(choices=ANSWER1, widget=forms.RadioSelect())
     bath_shower = forms.ChoiceField(choices=ANSWER2, widget=forms.RadioSelect())
@@ -108,7 +109,7 @@ class HealthHygieneForm(forms.ModelForm):
 
     class Meta:
         model = HealthHygiene
-        fields = ['daytime', 'medication_taken', 'teeth_brushed',
+        fields = ['medication_taken', 'teeth_brushed',
         'bath_shower', 'hair_washed', 'diet_nutrition',]
 
 

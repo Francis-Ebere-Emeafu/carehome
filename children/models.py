@@ -35,6 +35,10 @@ class Child(models.Model):
     assigned = models.BooleanField(default=False)
     when = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        verbose_name = "Child"
+        verbose_name_plural = "Children"
+
     def __str__(self):
         return "{} {}".format(self.first_name, self.last_name)
 

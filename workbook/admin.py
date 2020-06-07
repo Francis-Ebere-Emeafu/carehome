@@ -29,44 +29,52 @@ class TaskAdmin(admin.ModelAdmin):
 class StaffTaskAdmin(admin.ModelAdmin):
     list_display = ['title', 'staff', 'completed', 'when']
 
+admin.site.register(EmotionalWellbeing)
+# @admin.register(EmotionalWellbeing)
+# class EmotionalWellbeingAdmin(admin.ModelAdmin):
+#     list_display = []
 
-@admin.register(EmotionalWellbeing)
-class EmotionalWellbeingAdmin(admin.ModelAdmin):
-    list_display = []
+admin.site.register(HealthHygiene)
+# @admin.register(HealthHygiene)
+# class HealthHygieneAdmin(admin.ModelAdmin):
+#     list_display = []
 
-@admin.register(HealthHygiene)
-class HealthHygieneAdmin(admin.ModelAdmin):
-    list_display = []
+admin.site.register(Education)
+# @admin.register(Education)
+# class EducationAdmin(admin.ModelAdmin):
+#     list_display = []
 
-@admin.register(Education)
-class EducationAdmin(admin.ModelAdmin):
-    list_display = []
+admin.site.register(Activity)
+# @admin.register(Activity)
+# class ActivityAdmin(admin.ModelAdmin):
+#     list_display = []
 
-@admin.register(Activity)
-class ActivityAdmin(admin.ModelAdmin):
-    list_display = []
+admin.site.register(Achievement)
+# @admin.register(Achievement)
+# class AchievementAdmin(admin.ModelAdmin):
+#     list_display = []
 
-@admin.register(Achievement)
-class AchievementAdmin(admin.ModelAdmin):
-    list_display = []
+admin.site.register(Appointment)
+# @admin.register(Appointment)
+# class AppointmentAdmin(admin.ModelAdmin):
+#     list_display = []
 
-@admin.register(Appointment)
-class AppointmentAdmin(admin.ModelAdmin):
-    list_display = []
+admin.site.register(KeyWork)
+# @admin.register(KeyWork)
+# class KeyWorkAdmin(admin.ModelAdmin):
+#     list_display = []
 
-@admin.register(KeyWork)
-class KeyWorkAdmin(admin.ModelAdmin):
-    list_display = []
+admin.site.register(Incident)
+# @admin.register(Incident)
+# class IncidentAdmin(admin.ModelAdmin):
+#     list_display = []
 
-@admin.register(Incident)
-class IncidentAdmin(admin.ModelAdmin):
-    list_display = []
-
-@admin.register(Food)
-class FoodAdmin(admin.ModelAdmin):
-    list_display = ['meal']
-    form = FoodForm
-    search_fields = ['meal']
+admin.site.register(Food)
+# @admin.register(Food)
+# class FoodAdmin(admin.ModelAdmin):
+#     list_display = ['meal']
+#     form = FoodForm
+#     search_fields = ['meal']
 
 
 # @admin.register(StaffTask)

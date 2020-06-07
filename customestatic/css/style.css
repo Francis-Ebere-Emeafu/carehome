@@ -4740,9 +4740,8 @@ ul.dropdown-menu {
 .inbox-details-body .tab h3{
   font-size: 2.5em;
   /* color: #FC8213; */
-  color: red;
   margin: 0em;
-  font-weight: 700;
+  font-weight: 900;
   text-align:left;
 }
 
@@ -4752,7 +4751,7 @@ ul.dropdown-menu {
   margin: 0em;
   font-weight: 600;
   text-align:left;
-  padding: 50px 50px 1000px 1px;
+  padding: 50px 50px 1000px 0.1px;
 }
 
 .forgot a {

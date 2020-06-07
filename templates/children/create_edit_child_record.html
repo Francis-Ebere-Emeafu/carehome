@@ -23,127 +23,150 @@
     <div class="inbox" >
     	  <h2  style="text-align:center;">
 					<span style="color:#FC8213">{{ child.full_name }}'s</span> Record Update <br>
-          <small style="color:blue;">For: <span style="color:#FC0213">{{ today.date }}</span></small>
+          <small style="color:blue;"><span style="color:#334f09"> {{ day_of_week }},   {{ today.date }}</span></small>
 				</h2>
-			<div class="col-md-6 col-sm-offset-3 compose-right">
+			<div class="col-md-8 col-sm-offset-2 compose-right">
 				<div class="inbox-details-default">
 					<div class="inbox-details-heading" style="text-align:center;">
-						Please fill and update the form below to enter child's record
+						<span style="color:#FC0213; font-weight: 900;" >{{ greeting }}! </span> Please fill and update the child's record
 					</div>
 					<div class="inbox-details-body">
 
-						<form class="" action="" method="POST" id="customForm">{% csrf_token %}
+						<form action="" method="POST" id="customForm">{% csrf_token %}
 						  <!-- One "tab" for each step in the form: -->
 						  <div class="tab"><h3>Notes:</h3>
 						    {{ form.notes }}
 						  </div>
 
-							<div class="tab"><h3 style="text-align:center; padding-bottom:8px;">Emotional Wellbeing:</h3>
-								<div class="form-row">
-									<h4>Daytime</h4>
-									<div class="btn-group btn-group-toggle btn-group-class" data-toggle="buttons">
-										{% for radio in emotional_form.daytime %}
-									  <label class="btn btn-secondary btn_label" for="{{ radio.id_for_label }}">
-									    {{ radio.choice_label }}
-											<span class="radio">{{ radio.tag }}</span>
-									  </label>
-										{% endfor %}
+							<div class="tab"><h3 style="text-align:center; padding-bottom:15px;">Emotional Wellbeing:</h3>
+								<div class="row" style="text-align:center;">
+									<div class="col-md-2">
+										<div class="form-row">
+											<h4></h4>
+											<div class="btn-group btn-group-toggle btn-group-class" data-toggle="buttons">
+												{% comment %}
+												{% for radio in emotional_form.daytime %}
+											  <label class="btn btn-secondary btn_label" for="{{ radio.id_for_label }}">
+											    {{ radio.choice_label }}
+													<span class="radio">{{ radio.tag }}</span>
+											  </label>
+												{% endfor %}
+												{% endcomment %}
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-4 offset-md-2">
+										<div class="form-row">
+											<h4>Measure</h4>
+											<div class="btn-group btn-group-toggle btn-group-class" data-toggle="buttons">
+												{% for radio in emotional_form.measure %}
+												<label class="btn btn-secondary btn_label" for="{{ radio.id_for_label }}">
+													{{ radio.choice_label }}
+													<span class="radio">{{ radio.tag }}</span>
+												</label>
+												{% endfor %}
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-4">
+										<div class="form-row">
+											<h4>Degree</h4>
+											<div class="btn-group btn-group-toggle btn-group-class" data-toggle="buttons">
+												{% for radio in emotional_form.degree %}
+												<label class="btn btn-secondary btn_label" for="{{ radio.id_for_label }}">
+													{{ radio.choice_label }}
+													<span class="radio">{{ radio.tag }}</span>
+												</label>
+												{% endfor %}
+											</div>
+										</div>
 									</div>
 								</div>
-
-								<div class="form-row">
-									<h4>Measure</h4>
-									<div class="btn-group btn-group-toggle btn-group-class" data-toggle="buttons">
-										{% for radio in emotional_form.measure %}
-									  <label class="btn btn-secondary btn_label" for="{{ radio.id_for_label }}">
-									    {{ radio.choice_label }}
-											<span class="radio">{{ radio.tag }}</span>
-									  </label>
-										{% endfor %}
-									</div>
-								</div>
-
-								<div class="form-row">
-									<h4>Degree</h4>
-									<div class="btn-group btn-group-toggle btn-group-class" data-toggle="buttons">
-										{% for radio in emotional_form.degree %}
-									  <label class="btn btn-secondary btn_label" for="{{ radio.id_for_label }}">
-									    {{ radio.choice_label }}
-											<span class="radio">{{ radio.tag }}</span>
-									  </label>
-										{% endfor %}
-									</div>
-								</div>
-
 								{{ emotional_form.comment|as_crispy_field }}
 							</div>
 
+						  <div class="tab"><h3 style="text-align:center; padding-bottom:15px;">Health & Hygiene:</h3>
 
-						<div class="tab"><h3 style="text-align:center; padding-bottom:4px;">Health & Hygiene:</h3>
-
-								<div class="form-row">
-									<h4>Daytime</h4>
-									<div class="btn-group btn-group-toggle btn-group-class" data-toggle="buttons">
-										{% for radio in health_form.daytime %}
-									  <label class="btn btn-secondary btn_label" for="{{ radio.id_for_label }}">
-									    {{ radio.choice_label }}
-											<span class="radio">{{ radio.tag }}</span>
-									  </label>
-										{% endfor %}
+								<div class="row">
+								{% comment %}
+								<div class="col-md-4">
+									<div class="form-row">
+										<h4>Daytime</h4>
+										<div class="btn-group btn-group-toggle btn-group-class" data-toggle="buttons">
+											{% for radio in health_form.daytime %}
+											<label class="btn btn-secondary btn_label" for="{{ radio.id_for_label }}">
+												{{ radio.choice_label }}
+												<span class="radio">{{ radio.tag }}</span>
+											</label>
+											{% endfor %}
+										</div>
 									</div>
 								</div>
-
-								<div class="form-row">
-									<h4>Medication taken</h4>
-									<div class="btn-group btn-group-toggle btn-group-class" data-toggle="buttons">
-										{% for radio in health_form.medication_taken %}
-									  <label class="btn btn-secondary btn_label" for="{{ radio.id_for_label }}">
-									    {{ radio.choice_label }}
-											<span class="radio">{{ radio.tag }}</span>
-									  </label>
-										{% endfor %}
+								{% endcomment %}
+								<div class="col-md-4">
+									<div class="form-row">
+										<h4>Medication taken</h4>
+										<div class="btn-group btn-group-toggle btn-group-class" data-toggle="buttons">
+											{% for radio in health_form.medication_taken %}
+											<label class="btn btn-secondary btn_label" for="{{ radio.id_for_label }}">
+												{{ radio.choice_label }}
+												<span class="radio">{{ radio.tag }}</span>
+											</label>
+											{% endfor %}
+										</div>
 									</div>
 								</div>
-
-								<div class="form-row">
-									<h4>Teeth brushed</h4>
-									<div class="btn-group btn-group-toggle btn-group-class" data-toggle="buttons">
-										{% for radio in health_form.teeth_brushed %}
-									  <label class="btn btn-secondary btn_label" for="{{ radio.id_for_label }}">
-									    {{ radio.choice_label }}
-											<span class="radio">{{ radio.tag }}</span>
-									  </label>
-										{% endfor %}
+								<div class="col-md-4">
+									<div class="form-row">
+										<h4>Teeth brushed</h4>
+										<div class="btn-group btn-group-toggle btn-group-class" data-toggle="buttons">
+											{% for radio in health_form.teeth_brushed %}
+											<label class="btn btn-secondary btn_label" for="{{ radio.id_for_label }}">
+												{{ radio.choice_label }}
+												<span class="radio">{{ radio.tag }}</span>
+											</label>
+											{% endfor %}
+										</div>
 									</div>
-								</div>
-
-								<div class="form-row">
-									<h4>Bathed or showered</h4>
-									<div class="btn-group btn-group-toggle btn-group-class" data-toggle="buttons">
-										{% for radio in health_form.bath_shower %}
-									  <label class="btn btn-secondary btn_label" for="{{ radio.id_for_label }}">
-									    {{ radio.choice_label }}
-											<span class="radio">{{ radio.tag }}</span>
-									  </label>
-										{% endfor %}
-									</div>
-								</div>
-
-							<div class="form-row">
-								<h4>Hair washed</h4>
-								<div class="btn-group btn-group-toggle btn-group-class" data-toggle="buttons">
-									{% for radio in health_form.hair_washed %}
-									<label class="btn btn-secondary btn_label" for="{{ radio.id_for_label }}">
-										{{ radio.choice_label }}
-										<span class="radio">{{ radio.tag }}</span>
-									</label>
-									{% endfor %}
 								</div>
 							</div>
+
+								<div class="row">
+								<div class="col-md-4">
+									<div class="form-row">
+										<h4>Bathed or showered</h4>
+										<div class="btn-group btn-group-toggle btn-group-class" data-toggle="buttons">
+											{% for radio in health_form.bath_shower %}
+											<label class="btn btn-secondary btn_label" for="{{ radio.id_for_label }}">
+												{{ radio.choice_label }}
+												<span class="radio">{{ radio.tag }}</span>
+											</label>
+											{% endfor %}
+										</div>
+									</div>
+								</div>
+
+								<div class="col-md-4">
+									<div class="form-row">
+										<h4>Hair washed</h4>
+										<div class="btn-group btn-group-toggle btn-group-class" data-toggle="buttons">
+											{% for radio in health_form.hair_washed %}
+											<label class="btn btn-secondary btn_label" for="{{ radio.id_for_label }}">
+												{{ radio.choice_label }}
+												<span class="radio">{{ radio.tag }}</span>
+											</label>
+											{% endfor %}
+										</div>
+									</div>
+								</div>
+							</div>
+
 							{{health_form.diet_nutrition|as_crispy_field }}
 						</div>
 
-
+{% comment %}
 						  <div class="tab"><h3>Education:</h3>
 								{{education_form|crispy }}
 							</div>
@@ -167,8 +190,9 @@
 							<div class="tab">Incidents:
 								{{indident_form|crispy }}
 							</div>
+{% endcomment %}
 
-							<div class="tab">Notes:
+							<div class="tab"><h3>Notes:</h3>
 						    {{ form.addtional_info }}
 						  </div>
 
@@ -185,25 +209,14 @@
 						    <span class="step"></span>
 						    <span class="step"></span>
 						    <span class="step"></span>
-								<span class="step"></span>
+								<!-- <span class="step"></span>
 						    <span class="step"></span>
 						    <span class="step"></span>
 						    <span class="step"></span>
 								<span class="step"></span>
-						    <span class="step"></span>
+						    <span class="step"></span> -->
 						  </div>
 						</form>
-
-						{% comment %}
-						<!-- This is the complete form  -->
-						<form class="" action="" method="post" id="">{% csrf_token %}
-							{{ form }}
-							{{child}}
-							{{today}}
-							{{food_form}}
-							<input type="submit" name="" onclick="" value="Submit">
-						</form>
-						{% endcomment %}
 
 					</div>
 				</div>
@@ -259,7 +272,7 @@ function nextPrev(n) {
   // if you have reached the end of the form...
   if (currentTab >= x.length) {
     // ... the form gets submitted:
-    document.getElementById("regForm").submit();
+    document.getElementById("customForm").submit();
     return false;
   }
   // Otherwise, display the correct tab:

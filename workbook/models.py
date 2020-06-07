@@ -61,6 +61,11 @@ class EmotionalWellbeing(models.Model):
     measure = models.PositiveIntegerField(choices=MEASURE, null=True, blank=True)
     degree = models.PositiveIntegerField(choices=DEGREE, null=True, blank=True)
     comment = models.TextField(null=True, blank=True)
+    # active = models.BooleanField(default=True)
+    # date_created = models.DateTimeField(auto_now_add=False, auto_now=False)
+
+    def __str__(self):
+        return "EmotionalWellbeing for {}-{}-{}".format(self.daytime, self.measure, self.degree)
 
 
 class HealthHygiene(models.Model):
@@ -71,12 +76,19 @@ class HealthHygiene(models.Model):
     hair_washed = models.PositiveIntegerField(choices=ANSWER, null=True, blank=True)
     diet_nutrition = models.ForeignKey(Food, on_delete=models.CASCADE, null=True, blank=True)
 
+    def __str__(self):
+        return "HealthHygiene for {}-{}".format(self.daytime, self.medication_taken)
+
 
 class Education(models.Model):
     hours_attended = models.CharField(max_length=200, null=True, blank=True)
     homework_completed = models.PositiveIntegerField(choices=ANSWER, null=True, blank=True)
     educational_activity = models.CharField(max_length=200, null=True, blank=True)
     school_contact = models.CharField(max_length=200, null=True, blank=True)
+
+    def __str__(self):
+        return "Education for {}-{}".format(self.hours_attended, self.homework_completed)
+
 
 
 class Activity(models.Model):
@@ -85,11 +97,17 @@ class Activity(models.Model):
     # undertaken_activities = models.CharField(max_length=20)
     undertaken_activities = models.PositiveIntegerField(choices=ANSWER, null=True, blank=True)
 
+    def __str__(self):
+        return "Activity for {}".format(self.undertaken_activities)
+
 
 class Achievement(models.Model):
     first = models.CharField(max_length=200, null=True, blank=True)
     second = models.CharField(max_length=200, null=True, blank=True)
     third = models.CharField(max_length=200, null=True, blank=True)
+
+    def __str__(self):
+        return "Achievement for {}".format(self.first)
 
 
 class Appointment(models.Model):
@@ -97,10 +115,16 @@ class Appointment(models.Model):
     professional_appointment = models.PositiveIntegerField(choices=ANSWER, null=True, blank=True)
     contact_visit_call = models.PositiveIntegerField(choices=ANSWER, null=True, blank=True)
 
+    def __str__(self):
+        return "Appointment for {}".format(self.health_appointment)
+
 
 class KeyWork(models.Model):
     requested_planned = models.PositiveIntegerField(choices=ANSWER, null=True, blank=True)
     topic = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return "KeyWork for {}".format(self.requested_planned)
 
 
 class Incident(models.Model):
@@ -108,3 +132,6 @@ class Incident(models.Model):
     consequence = models.TextField(null=True, blank=True)
     intervention = models.TextField(null=True, blank=True)
     comments = models.TextField(null=True, blank=True)
+
+    def __str__(self):
+        return "Incident for {}".format(self.title)
