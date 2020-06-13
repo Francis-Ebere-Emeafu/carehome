@@ -28,7 +28,9 @@
 			<div class="col-md-8 col-sm-offset-2 compose-right">
 				<div class="inbox-details-default">
 					<div class="inbox-details-heading" style="text-align:center;">
-						<span style="color:#FC0213; font-weight: 900;" >{{ greeting }}! </span> Please fill and update the child's record
+						<span style="color:#FC0213; font-weight: 900;" >{{ greeting }}, </span>
+						<span style="color:#FC8213; font-weight: 1000;" > {{ account.full_name }}! </span>
+						 Please fill and update the child's record
 					</div>
 					<div class="inbox-details-body">
 
@@ -166,10 +168,11 @@
 							{{health_form.diet_nutrition|as_crispy_field }}
 						</div>
 
-{% comment %}
+
 						  <div class="tab"><h3>Education:</h3>
 								{{education_form|crispy }}
 							</div>
+{% comment %}
 
 						  <div class="tab">Activities:
 								{{activity_form|crispy }}
@@ -190,8 +193,8 @@
 							<div class="tab">Incidents:
 								{{indident_form|crispy }}
 							</div>
-{% endcomment %}
 
+{% endcomment %}
 							<div class="tab"><h3>Notes:</h3>
 						    {{ form.addtional_info }}
 						  </div>
@@ -312,15 +315,21 @@ function fixStepIndicator(n) {
 }
 
 
-// $("#customForm :input").click(function () {
-//     $("#customForm :input").each(function() {
-//       if ($(this).is(":checked")) {
-//         $("#form" + $(this).attr("id")).addClass("active");
-//       } else {
-//         $("#form" + $(this).attr("id")).removeClass("active");
-//       }
-//     });
-// });
+function myCheckedInput(){
+	var checkedInput = document.querySelectorAll("input[type='radio']:checked");
+	var labelInput = document.querySelectorAll(".btn_label .radio");
+	// console.log(checkedInput);
+	// console.log(labelInput);
+	Array.from(labelInput).forEach(function(thisInput){
+		console.log(thisInput);
+		if (thisInput.querySelector("input[type='radio']:checked")){
+			// console.log("Hello Francis");
+			var newHtml = thisInput.parentNode;
+			// console.log(newHtml);
+			newHtml.classList.add("active");
+		}
+	})
+}
 
 // $(document).ready(function(){
 // 	$("input[type='radio']").click(function () {
@@ -329,7 +338,7 @@ function fixStepIndicator(n) {
 // 		$('.'+activespan).addClass('active');
 // 	});
 // });
-
+window.onload = myCheckedInput;
 </script>
 {% endblock extra-js %}
 
