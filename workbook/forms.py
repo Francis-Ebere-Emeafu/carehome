@@ -122,7 +122,7 @@ class EducationForm(forms.ModelForm):
 
 
 class ActivityForm(forms.ModelForm):
-    undertaken_activities = forms.ChoiceField(choices=ANSWER4, widget=forms.RadioSelect())
+    undertaken_activities = forms.ChoiceField(choices=ANSWER5, widget=forms.RadioSelect())
     class Meta:
         model = Activity
         fields = ['planned_activities', 'other_activities',
@@ -137,9 +137,9 @@ class AchievementForm(forms.ModelForm):
 
 
 class AppointmentForm(forms.ModelForm):
-    health_appointment = forms.ChoiceField(choices=ANSWER5, widget=forms.RadioSelect())
-    professional_appointment = forms.ChoiceField(choices=ANSWER6, widget=forms.RadioSelect())
-    contact_visit_call = forms.ChoiceField(choices=ANSWER7, widget=forms.RadioSelect())
+    health_appointment = forms.ChoiceField(choices=ANSWER6, widget=forms.RadioSelect())
+    professional_appointment = forms.ChoiceField(choices=ANSWER7, widget=forms.RadioSelect())
+    contact_visit_call = forms.ChoiceField(choices=ANSWER8, widget=forms.RadioSelect())
     class Meta:
         model = Appointment
         fields = ['health_appointment', 'professional_appointment', 'contact_visit_call']
@@ -147,7 +147,7 @@ class AppointmentForm(forms.ModelForm):
 
 
 class KeyWorkForm(forms.ModelForm):
-    requested_planned = forms.ChoiceField(choices=ANSWER8, widget=forms.RadioSelect())
+    requested_planned = forms.ChoiceField(choices=ANSWER9, widget=forms.RadioSelect())
     class Meta:
         model = KeyWork
         fields = ['requested_planned', 'topic']

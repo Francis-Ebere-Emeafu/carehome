@@ -135,7 +135,7 @@
 								</div>
 							</div>
 
-								<div class="row">
+						  <div class="row">
 								<div class="col-md-4">
 									<div class="form-row">
 										<h4>Bathed or showered</h4>
@@ -168,32 +168,152 @@
 							{{health_form.diet_nutrition|as_crispy_field }}
 						</div>
 
-
-						  <div class="tab"><h3>Education:</h3>
-								{{education_form|crispy }}
+							<div class="tab"><h3 style="text-align:center; padding-bottom:15px;">Education:</h3>
+										<div class="col-md-6 offset-md-2">
+											<div class="form-row">
+												<h4>Homework Completed</h4>
+												<div class="btn-group btn-group-toggle btn-group-class" data-toggle="buttons">
+													{% for radio in education_form.homework_completed %}
+													<label class="btn btn-secondary btn_label" for="{{ radio.id_for_label }}">
+														{{ radio.choice_label }}
+														<span class="radio">{{ radio.tag }}</span>
+													</label>
+													{% endfor %}
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-12">
+												{{education_form.hours_attended|as_crispy_field }}
+											</div>
+											<div class="col-md-12">
+												{{education_form.educational_activity|as_crispy_field }}
+											</div>
+											<div class="col-md-12">
+												{{education_form.school_contact|as_crispy_field }}
+											</div>
+										</div>
 							</div>
-{% comment %}
 
-						  <div class="tab">Activities:
-								{{activity_form|crispy }}
+							<div class="tab"><h3 style="text-align:center; padding-bottom:15px;">Activities:</h3>
+										<div class="col-md-6 offset-md-2">
+											<div class="form-row">
+												<h4>Undertaken Activities</h4>
+												<div class="btn-group btn-group-toggle btn-group-class" data-toggle="buttons">
+													{% for radio in activity_form.undertaken_activities %}
+													<label class="btn btn-secondary btn_label" for="{{ radio.id_for_label }}">
+														{{ radio.choice_label }}
+														<span class="radio">{{ radio.tag }}</span>
+													</label>
+													{% endfor %}
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-12">
+												{{activity_form.planned_activities|as_crispy_field }}
+											</div>
+											<div class="col-md-12">
+												{{activity_form.other_activities|as_crispy_field }}
+											</div>
+										</div>
 							</div>
 
-							<div class="tab">Achievements:
+							<div class="tab"><h3 style="text-align:center; padding-bottom:15px;">Achievements:</h3>
 								{{achievement_form|crispy }}
 							</div>
 
-							<div class="tab">Appointments & Contact:
-								{{appointment_form|crispy }}
+							<div class="tab"><h3 style="text-align:center; padding-bottom:15px;">Appointments & Contact:</h3>
+								<div class="row">
+								<div class="col-md-12">
+									<div class="form-row">
+										<h4>Health Appointment</h4>
+										<div class="btn-group btn-group-toggle btn-group-class" data-toggle="buttons">
+											{% for radio in appointment_form.health_appointment %}
+											<label class="btn btn-secondary btn_label" for="{{ radio.id_for_label }}">
+												{{ radio.choice_label }}
+												<span class="radio">{{ radio.tag }}</span>
+											</label>
+											{% endfor %}
+										</div>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-row">
+										<h4>Professional Appointment</h4>
+										<div class="btn-group btn-group-toggle btn-group-class" data-toggle="buttons">
+											{% for radio in appointment_form.professional_appointment %}
+											<label class="btn btn-secondary btn_label" for="{{ radio.id_for_label }}">
+												{{ radio.choice_label }}
+												<span class="radio">{{ radio.tag }}</span>
+											</label>
+											{% endfor %}
+										</div>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-row">
+										<h4>Contacts Visits/Calls</h4>
+										<div class="btn-group btn-group-toggle btn-group-class" data-toggle="buttons">
+											{% for radio in appointment_form.contact_visit_call %}
+											<label class="btn btn-secondary btn_label" for="{{ radio.id_for_label }}">
+												{{ radio.choice_label }}
+												<span class="radio">{{ radio.tag }}</span>
+											</label>
+											{% endfor %}
+										</div>
+									</div>
+								</div>
 							</div>
+						</div>
 
-							<div class="tab">Key Work:
-								{{key_form|crispy }}
+						<div class="tab"><h3 style="text-align:center; padding-bottom:15px;">Key Work:</h3>
+									<div class="col-md-6 offset-md-2">
+										<div class="form-row">
+											<h4>Requested or Planned</h4>
+											<div class="btn-group btn-group-toggle btn-group-class" data-toggle="buttons">
+												{% for radio in key_form.requested_planned %}
+												<label class="btn btn-secondary btn_label" for="{{ radio.id_for_label }}">
+													{{ radio.choice_label }}
+													<span class="radio">{{ radio.tag }}</span>
+												</label>
+												{% endfor %}
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12">
+											{{key_form.topic|as_crispy_field }}
+										</div>
+									</div>
+						</div>
+
+							<div class="tab"><h3 style="text-align:center; padding-bottom:15px;">Incidents:</h3>
+								<div class="row">
+									<div class="col-md-12">
+										{{indident_form.title|as_crispy_field }}
+									</div>
+									<div class="col-md-12">
+										{{indident_form.consequence|as_crispy_field }}
+									</div>
+								</div>
 							</div>
-
-							<div class="tab">Incidents:
-								{{indident_form|crispy }}
+							<div class="tab"><h3 style="text-align:center; padding-bottom:15px;">Incidents:</h3>
+								<div class="row">
+									<div class="col-md-12">
+										{{indident_form.intervention|as_crispy_field }}
+									</div>
+									<div class="col-md-12">
+										{{indident_form.comments|as_crispy_field }}
+									</div>
+								</div>
 							</div>
-
+{% comment %}
+							<div class="tab"><h3 style="text-align:center; padding-bottom:15px;">Incidents:</h3>
+								<div class="col-md-12">
+									{{indident_form.consequence|as_crispy_field }}
+								</div>
+							</div>
 {% endcomment %}
 							<div class="tab"><h3>Notes:</h3>
 						    {{ form.addtional_info }}

@@ -183,7 +183,6 @@ def create_edit_child_record(request, child_id):
     incidents_id = record_instance.incidents.id
     incidents_instance = Incident.objects.get(pk=incidents_id)
 
-
     food_form = FoodForm(request.POST or None)
     emotional_form = EmotionalWellbeingForm(request.POST or None, instance=emotional_instance)
     health_form = HealthHygieneForm(request.POST or None, instance=health_instance)
@@ -195,17 +194,16 @@ def create_edit_child_record(request, child_id):
     indident_form = IncidentForm(request.POST or None, instance=incidents_instance)
 
     form = ChildRecordForm(request.POST or None, request.FILES or None, instance=record_instance)
-    if form.is_valid() and emotional_form.is_valid() and health_form.is_valid() and education_form.is_valid():
-         # and activity_form.is_valid() and achievement_form.is_valid() and appointment_form.is_valid() and key_form.is_valid() and indident_form.is_valid():
+    if form.is_valid() and emotional_form.is_valid() and health_form.is_valid() and education_form.is_valid() and activity_form.is_valid() and achievement_form.is_valid() and appointment_form.is_valid() and key_form.is_valid() and indident_form.is_valid():
         child_record_update = form.save(commit=False)
         emotional_form.save()
         health_form.save()
         education_form.save()
-        # activity_form.save()
-        # achievement_form.save()
-        # appointment_form.save()
-        # key_form.save()
-        # indident_form.save()
+        activity_form.save()
+        achievement_form.save()
+        appointment_form.save()
+        key_form.save()
+        indident_form.save()
         child_record_update.save()
         messages.success(request, "{}'s record successfully updated".format(child))
         return redirect('child_record_list')
