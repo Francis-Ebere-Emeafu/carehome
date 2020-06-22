@@ -88,6 +88,14 @@ def child_assignment_list(request):
     return render(request, "children/child_assignment_list.html", context)
 
 
+def child_assignment_list2(request):
+    me = Account.objects.get(user=request.user)
+    assigned_list = StaffChildManager.objects.filter(staff=me)
+    children_list = Child.objects.filter(assigned=False)
+    context = {"children_list": children_list, "assigned_list": assigned_list}
+    return render(request, "children/child_assignment_list2.html", context)
+
+
 def my_child_selections(request):
     me = Account.objects.get(user=request.user)
     assigned_list = StaffChildManager.objects.filter(staff=me)
@@ -102,6 +110,20 @@ def select_child(request, child_id):
     child.assigned = True
     child.save()
     return redirect('child_assignment_list')
+
+
+def mandatory_select_child(request, child_id):
+    child = get_object_or_404(Child, id=child_id)
+    account = Account.objects.get(user=request.user)
+    StaffChildManager.objects.create(child=child, staff=account)
+    child.assigned = True
+    child.save()
+    assigned_count = StaffChildManager.objects.filter(staff=account).count()
+    if assigned_count < 3:
+        return redirect('child_assignment_list2')
+    return redirect('staff_profile')
+
+
 
 
 def child_record_list(request):

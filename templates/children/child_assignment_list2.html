@@ -86,7 +86,7 @@
   	    		<div class="project-eff">
 
               <div class="container-product-img">
-                <a href="{% url 'select_child' child_id=child.id %}">
+                <a href="{% url 'mandatory_select_child' child_id=child.id %}">
                 <img class="img-responsive" src="{{ child.image_url }}" alt="">
                 <!-- img-responsive -->
                 </a>
@@ -94,7 +94,7 @@
 
   					</div>
   	    		<div class="produ-cost">
-              <a href="{% url 'select_child' child_id=child.id %}">
+              <a href="{% url 'mandatory_select_child' child_id=child.id %}">
   	    			  <h4>{{ child.full_name }}</h4>
               </a>
   	    			<h5>{{ child.phone }}</h5>
@@ -125,7 +125,7 @@
 		      {% for child in children_list %}
 		      	<div class="col-md-3 product-grid">
 		      		<div class="product-items">
-		  	    		<div class="project-eff"> 
+		  	    		<div class="project-eff">
 		              <div class="container-product-img">
 		                <a href="{% url 'select_child' child_id=child.id %}">
 		                <img class="img-responsive" src="{{ child.image_url }}" alt="">
@@ -194,7 +194,7 @@
 
 						<td>
 							<div class="" style="text-align:center">
-								<a href="{% url 'select_child' child_id=child.id %}" style="color:blue"> <i class="fa fa-check "></i></a>
+								<a href="{% url 'mandatory_select_child' child_id=child.id %}" style="color:blue"> <i class="fa fa-check "></i></a>
 							</div>
 						</td>
 						<!-- <td>

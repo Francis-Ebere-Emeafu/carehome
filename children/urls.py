@@ -8,7 +8,9 @@ urlpatterns = [
     path("modify/<int:child_id>/", views.modify_child_details, name="modify_child_details"),
 
     path("assignment/list/", views.child_assignment_list, name="child_assignment_list"),
+    path("assignments/list/", views.child_assignment_list2, name="child_assignment_list2"),
     path("select/<int:child_id>/", views.select_child, name="select_child"),
+    path("selects/<int:child_id>/", views.mandatory_select_child, name="mandatory_select_child"),
 
     path("record/list/", views.child_record_list, name="child_record_list"),
     path("selection/list/", views.my_child_selections, name="my_child_selections"),

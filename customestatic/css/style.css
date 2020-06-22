@@ -450,6 +450,24 @@ i.fa.fa-bell{
 i.fa.fa-tasks{
 	color:#6F6F6F;
 }
+.task-item{
+  padding: 0.8em 2em;
+  border-bottom: 3px solid  #E4E4E4;
+}
+.task-item span{
+  /* border-right: 3px solid  #E4E4E4; */
+  color: #E4E4E4;
+  padding-right: 0.8em;
+  padding-left: 0.8em;
+}
+.task-item h3{
+  /* border-right: 3px solid  #E4E4E4; */
+  padding-left: 0.8em;
+}
+/* .inbox-details-heading {
+    padding: 0.8em 2em;
+    background: #E4E4E4;
+} */
 .user-panel-top li a:hover{
 	border-color:rgba(101, 124, 153, 0.93);
 }
@@ -810,7 +828,7 @@ ul.dropdown-menu.drp-mnu li {
 /*--header strip end here-*/
 /*inner-block--*/
 .inner-block {
-    padding: 8em 2em 4em 2em;
+    padding: 3em 2em 4em 0em;
     background: #fafafa;
 }
 .market-update-block {
@@ -1438,8 +1456,14 @@ span.shoppy-rate h4 {
     box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.15);
 }
 .popular-bran-right {
-    background:#FC8213;
-    padding: 3em 1em;
+    /* background:#FC8213; */
+    /* padding: 3em 1em; */
+}
+.popular-bran-right img{
+  height: 110px;
+  width:auto;
+  /* margin-left: -12px; */
+  /* padding-bottom: -5px; */
 }
 .popular-bran-left {
     background: #fff;
@@ -2065,12 +2089,18 @@ p.grid1 {
 /*--maps end here--*/
 /*--balank page start here--*/
 .blank {
-    min-height: 600px;
+    /* min-height: 600px; */
+}
+.blank .border-line{
+   /* border-top: 5px solid red; */
+   border-bottom: 4px solid #fed2ab;
+   /* #fdaa5f; */
 }
 .blank h2 {
     font-size: 2em;
     color: #68AE00;
     margin-bottom: 1em;
+    padding-left: 10px;
     font-family: 'Carrois Gothic', sans-serif;
 }
 .blankpage-main {
@@ -2443,6 +2473,20 @@ ul.nav.tabs li a span {
     box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.15);
     margin-bottom: 3em;
 }
+.container-product-img {
+  height: 150px;
+  border: dashed blue 1px;
+}
+
+.container-product-img img {
+  max-height: 100%;
+  width: 100%;
+}
+.product-items-img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
 .pro-head h2 {
     font-size: 2em;
     color: #68AE00;
@@ -2463,6 +2507,9 @@ ul.nav.tabs li a span {
     font-size: 1em;
     color: #fff;
     font-family: 'Carrois Gothic', sans-serif;
+}
+.produ-cost a h4:hover {
+  color: #FC8213;
 }
 /*--light-box--*/
 .project-eff:hover span.rollover1 {
@@ -3363,7 +3410,7 @@ canvas#radar {
     padding: 1.5em 1em;
 }
 .popular-bran-right {
-    padding: 2.4em 1em;
+    /* padding: 2.4em 1em; */
 }
 .popular-follo-right {
     padding: 2.8em 1em;
@@ -3634,8 +3681,8 @@ canvas#radar {
 }
 .popular-bran-right {
     float: right;
-    width: 50%;
-    padding: 2em 1em;
+    /* width: 50%;
+    padding: 2em 1em; */
 }
 .popular-follo-left {
     float: left;
@@ -3656,7 +3703,13 @@ canvas#radar {
     margin-top: 2em;
 }
 .popular-brand {
-    margin-top: 2em;
+    /* margin-top: 500px; */
+}
+.my-popular-brand{
+  /* margin-bottom: 20px; */
+
+  border: 4px solid #fed2ab;
+
 }
 .popular-bran-left p {
     font-size: 1em;
@@ -3900,7 +3953,7 @@ canvas#pie {
     font-size: 2em;
 }
 .inner-block {
-    padding: 10em 2em 2em 2em;
+    padding: 3em 2em 2em 0em;
 }
 .chart-layer1-left {
     padding: 0em 0em 2em 0em;
@@ -4079,7 +4132,7 @@ canvas#bar {
     min-width: 480px;
 }
 .inner-block {
-    padding: 10em 1em 2em 1em;
+    padding: 3em 1em 2em 0em;
 }
 .chit-chat-layer1 {
     margin: 1em 0em;
@@ -4106,7 +4159,7 @@ span.malorum-pro {
     margin: 1em 0em 0em 0em;
 }
 .popular-brand {
-    margin-top: 1em;
+    /* margin-top: 1em; */
 }
 .popular-follow {
     margin-top: 1em;

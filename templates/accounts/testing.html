@@ -1,0 +1,274 @@
+
+{% comment %}
+<div class="chit-chat-layer1">
+  <div class="col-md-2 chit-chat-layer1-left">
+      <div class="work-progres">
+
+        <img src="{% static 'img/pro1.jpg' %}" alt="">
+          <div class="chit-chat-heading">
+            My Tasks for Today
+          </div>
+          <div class="table-responsive">
+              <table class="table table-hover">
+                    <thead>
+                          <tr>
+                              <th>#</th>
+                              <th>Project</th>
+                              <th>Manager</th>
+
+                              <th>Status</th>
+                              <th>Progress</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                      <tr>
+                          <td>4</td>
+                          <td><span class="label label-info">in progress</span></td>
+                      </tr>
+                      <tr>
+                          <td>5</td>
+                          <td><span class="label label-warning">in progress</span></td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+       </div>
+  </div>
+	<div class="col-md-5 chit-chat-layer1-left">
+      <div class="work-progres">
+          <div class="chit-chat-heading">
+            My Tasks for Today
+          </div>
+          <div class="table-responsive">
+              <table class="table table-hover">
+                          <thead>
+                            <tr>
+                              <th>#</th>
+                              <th>Project</th>
+                              <th>Manager</th>
+
+                              <th>Status</th>
+                              <th>Progress</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+
+                      <tr>
+                          <td>4</td>
+                          <td>LinkedIn</td>
+                          <td>Danial</td>
+
+                          <td><span class="label label-info">in progress</span></td>
+                          <td><span class="badge badge-info">65%</span></td>
+                      </tr>
+                      <tr>
+                          <td>5</td>
+                          <td>Tumblr</td>
+                          <td>David</td>
+
+                          <td><span class="label label-warning">in progress</span></td>
+                          <td><span class="badge badge-danger">95%</span></td>
+                      </tr>
+                      <tr>
+                          <td>6</td>
+                          <td>Tesla</td>
+                          <td>Mickey</td>
+
+                          <td><span class="label label-info">in progress</span></td>
+                          <td><span class="badge badge-success">95%</span></td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+       </div>
+  </div>
+  <div class="col-md-5 chit-chat-layer1-rit">
+    <div class="work-progres">
+        <div class="chit-chat-heading">
+            Upcomming Appointments
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>Project</th>
+                            <th>Manager</th>
+
+                            <th>Status</th>
+                            <th>Progress</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+
+
+                    <tr>
+                        <td>4</td>
+                        <td>LinkedIn</td>
+                        <td>Danial</td>
+
+                        <td><span class="label label-info">in progress</span></td>
+                        <td><span class="badge badge-info">65%</span></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Tumblr</td>
+                        <td>David</td>
+
+                        <td><span class="label label-warning">in progress</span></td>
+                        <td><span class="badge badge-danger">95%</span></td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Tesla</td>
+                        <td>Mickey</td>
+
+                        <td><span class="label label-info">in progress</span></td>
+                        <td><span class="badge badge-success">95%</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+     </div>
+
+  </div>
+  <div class="clearfix"> </div>
+</div>
+{% endcomment %}
+
+{% if assigned_list%}
+<div class="col-lx-12 col-sm-12 col-md-12">
+    <div class="market-updates">
+      <div class="inbox">
+        <h2  style="text-align:center;">Selected Children</h2>
+
+        <div class="col-md-10 col-sm-offset-1 mailbox-content  tab-content tab-content-in">
+          <div class="tab-pane active text-style" id="tab1">
+            <div class="mailbox-border">
+              <table class="table tab-border">
+                <tbody>
+                  <tr class="unread checked">
+                  <th class="hidden-xs">
+                  Child's Name
+                  </th>
+                  <th>
+                    Email
+                  </th>
+                  <th>
+                    phone
+                  </th>
+                  <th>
+                    Gender
+                  </th>
+                  <!-- <th style="color:">
+                    Assigned
+                  </th> -->
+  								<th style="color:blue">
+                    Modify Selection
+                  </th>
+  								<!-- <th style="color:#FC8213">
+                    Delete
+                  </th> -->
+                  </tr>
+                  {% for assigned in assigned_list %}
+                  <tr class="read checked">
+                    <td class="hidden-xs">
+                    {{ assigned.child.full_name }}
+                    </td>
+                    <td class="hidden-xs">
+                    {{ assigned.child.email }}
+                    </td>
+                    <td class="hidden-xs">
+                    {{ assigned.child.phone }}
+                    </td>
+                  <td>
+                    {% if assigned.child.gender == 2 %}
+                    <span style="color:red">Not Selected</span>
+                    {% else %}
+                    {{ assigned.child.get_gender_display }}
+                    {% endif %}
+                  </td>
+                  <td>
+                    <div class="" style="text-align:center">
+                      <a href="{% url 'modify_child_details' child_id=assigned.child.id %}" style="color:blue">Edit <i class="fa fa-pencil"></i></a>
+											<span> | </span>
+											<a href="" style="color:red"><i class="fa fa fa-trash-o"></i></a>
+                    </div>
+                  </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+<div class="col-lx-12 col-sm-12 col-md-12" style="padding-top:25px;">
+  <div class="market-updates">
+    <div class="inbox">
+      <h2  style="text-align:center; color:red;">Un-assigned Child's List</h2>
+      <div class="col-md-10 col-sm-offset-1 mailbox-content  tab-content tab-content-in">
+        <div class="tab-pane active text-style" id="tab1">
+          <div class="mailbox-border">
+            <table class="table tab-border">
+              <tbody>
+                <tr class="unread checked">
+                <th class="hidden-xs">
+                Child's Name
+                </th>
+                <th>
+                  Email
+                </th>
+                <th>
+                  phone
+                </th>
+                <th>
+                  Gender
+                </th>
+                <th style="color:blue">
+                  Select Child
+                </th>
+								<!-- <th style="color:#FC8213">
+                  Delete
+                </th> -->
+                </tr>
+                {% for child in children_list %}
+                <tr class="read checked">
+                  <td class="hidden-xs">
+                  {{ child.full_name }}
+                  </td>
+                  <td class="hidden-xs">
+                  {{ child.email }}
+                  </td>
+                  <td class="hidden-xs">
+                  {{ child.phone }}
+                  </td>
+                <td>
+                  {% if child.gender == 2 %}
+                  <span style="color:red">Not Selected</span>
+                  {% else %}
+                  {{ child.get_gender_display }}
+                  {% endif %}
+                </td>
+
+                <td>
+                  <div class="" style="text-align:center">
+                    <a href="{% url 'select_child' child_id=child.id %}" style="color:blue"> <i class="fa fa-check "></i></a>
+                  </div>
+                </td>
+
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

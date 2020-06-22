@@ -3,13 +3,16 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, render, get_object_or_404
+from django.utils import timezone
 
 from accounts.models import Account
-from children.models import Child, ChildRecord, StaffChildManager
-
 from accounts.forms import RegForm, LoginForm, ModifyForm
 from accounts.utils import get_username_for_auth, is_manager
 
+from children.models import Child, ChildRecord, StaffChildManager
+from children.utils import get_time_constants
+
+from workbook.models import StaffTask
 
 def register_staff(request):
     if not is_manager(user=request.user):
@@ -111,10 +114,28 @@ def delete_staff(request, profile_id):
 
 
 def staff_profile(request):
+    day_of_week, daytime, greeting = get_time_constants()
+    today = timezone.now()
+
     account = Account.objects.get(user=request.user)
     assigned_list = StaffChildManager.objects.filter(staff=account)
+    task_list = StaffTask.objects.filter(staff=account)
+    number = assigned_list.count()
+    # redirect to if child has not been selected
+    print("Here is the number: ", number)
+    if number < 3:
+        print("greater")
+        return redirect('child_assignment_list2')
+
     children_list = Child.objects.filter(assigned=False)
-    context = {"account": account, "children_list": children_list, "assigned_list": assigned_list}
+    context = {"account": account, "children_list": children_list,
+                "assigned_list": assigned_list,
+                "first_three":assigned_list[:3],
+                "first_child":assigned_list.last(),
+                "day_of_week":day_of_week,
+                "today":today,
+                "task_list": task_list[:5],
+                }
     return render(request, 'accounts/staff.html', context)
 
 
